@@ -1,0 +1,23 @@
+<%- include('partials/header', { currentPage: 'berita' }) %>
+
+<div class="mini-hero">
+    <h1><i class="fas fa-newspaper"></i> Berita</h1>
+    <p>Informasi terbaru seputar kegiatan dan kebijakan Kesbangpol</p>
+</div>
+
+<div class="card-grid">
+    <% berita.forEach(b => { %>
+        <div class="card">
+            <div class="card-img" style="background-image:url('<%= b.gambar %>');"></div>
+            <div class="card-body">
+                <span class="badge"><%= b.kategori %></span>
+                <h4><%= b.judul %></h4>
+                <div class="meta"><i class="far fa-calendar-alt"></i> <%= b.tanggal %></div>
+                <p><%= b.ringkasan %></p>
+                <a href="/berita/<%= b.id %>" class="btn-link">Baca selengkapnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+<%- include('partials/footer') %>

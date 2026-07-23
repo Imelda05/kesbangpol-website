@@ -1,0 +1,83 @@
+/* ============================================================
+   MENU MOBILE (HAMBURGER)
+   ============================================================ */
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px 4px;
+    z-index: 1000;
+    background: transparent;
+    border: none;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: #fff;
+    border-radius: 4px;
+    transition: 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex !important;
+    }
+
+    .nav-menu {
+        display: none !important;
+        width: 100%;
+        flex-direction: column;
+        padding: 20px 0 12px;
+        gap: 12px;
+        background: var(--primary);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        border-radius: 0 0 var(--radius) var(--radius);
+    }
+
+    .nav-menu.open {
+        display: flex !important;
+    }
+
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        padding-left: 20px;
+        background: transparent;
+        animation: none;
+        display: none;
+    }
+
+    .dropdown-content a {
+        color: rgba(255, 255, 255, 0.85);
+        padding: 6px 0;
+    }
+
+    .dropdown-content a:hover {
+        background: transparent;
+        color: #fff;
+        padding-left: 10px;
+    }
+
+    .dropdown.open .dropdown-content {
+        display: block !important;
+    }
+
+    .navbar .container {
+        position: relative;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .logo i {
+        font-size: 1.4rem;
+    }
+}

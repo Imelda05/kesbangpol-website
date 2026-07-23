@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Kesbangpol Kabupaten Muba</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <!-- CSS dari file eksternal -->
+    <link rel="stylesheet" href="/css/style.css" />
+    
+    <!-- CSS inline (untuk memastikan style selalu termuat) -->
+    <style>
+        /* ===== RESET & VARIABEL ===== */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:#f5f5f5; color:#2d2d2d; line-height:1.6; }
+        a { text-decoration:none; color:inherit; }
+        ul { list-style:none; }
+        img { max-width:100%; display:block; }
+        .container { max-width:1200px; margin:0 auto; padding:0 20px; }
+        :root { --primary:#4a4a4a; --primary-dark:#2d2d2d; --primary-light:#6b6b6b; --secondary:#e8e8e8; --accent:#8a8a8a; --gold:#b0a88a; --white:#fff; --gray:#f5f5f5; --text:#2d2d2d; --text-light:#6b6b6b; --shadow:0 8px 30px rgba(0,0,0,0.10); --shadow-hover:0 12px 40px rgba(0,0,0,0.18); --radius:10px; --transition:0.3s ease; }
+
+        /* ===== TOP BAR ===== */
+        .top-bar { background:var(--primary-dark); color:rgba(255,255,255,0.8); font-size:0.8rem; padding:6px 0; border-bottom:2px solid var(--gold); }
+        .top-bar .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+        .top-bar .left { display:flex; align-items:center; gap:16px; }
+        .top-bar .left i { margin-right:4px; color:var(--gold); }
+        .top-bar .right { display:flex; align-items:center; gap:14px; }
+        .top-bar .right a:hover { color:var(--gold); }
+
+        /* ===== NAVBAR ===== */
+        .navbar { background:var(--primary); padding:14px 0; position:sticky; top:0; z-index:999; box-shadow:0 4px 20px rgba(0,0,0,0.2); }
+        .navbar .container { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; position:relative; }
+        .logo { color:var(--white); font-size:1.5rem; font-weight:700; display:flex; align-items:center; gap:10px; }
+        .logo i { color:var(--gold); font-size:1.8rem; }
+        .logo span { color:var(--gold); font-weight:300; }
+        .nav-menu { display:flex; flex-wrap:wrap; gap:6px 18px; align-items:center; }
+        .nav-menu a { color:rgba(255,255,255,0.9); font-size:0.95rem; padding:8px 0; border-bottom:3px solid transparent; transition:var(--transition); font-weight:500; cursor:pointer; display:flex; align-items:center; gap:4px; }
+        .nav-menu a:hover, .nav-menu a.active { color:#fff; border-bottom-color:var(--gold); }
+        .dropdown { position:relative; }
+        .dropdown>a::after { content:" ▾"; font-size:0.65rem; }
+        .dropdown-content { display:none; position:absolute; top:100%; left:0; background:var(--white); min-width:220px; box-shadow:var(--shadow); border-radius:var(--radius); padding:10px 0; z-index:100; animation:fadeDown 0.25s ease; }
+        .dropdown-content a { color:var(--text); padding:10px 24px; display:block; border-bottom:none; font-size:0.9rem; font-weight:400; transition:var(--transition); }
+        .dropdown-content a:hover { background:var(--secondary); color:var(--primary); padding-left:28px; }
+        .dropdown.open .dropdown-content { display:block; }
+        @keyframes fadeDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
+
+        /* ===== HAMBURGER ===== */
+        .menu-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px 4px; z-index:1000; background:transparent; border:none; }
+        .menu-toggle span { display:block; width:28px; height:3px; background:#fff; border-radius:4px; transition:0.3s ease; }
+
+        /* ===== HERO SLIDER ===== */
+        .hero-slider { position:relative; width:100%; height:500px; overflow:hidden; border-radius:var(--radius); margin:30px 0 20px; box-shadow:var(--shadow); }
+        .slide { position:absolute; inset:0; opacity:0; transition:opacity 1s ease; background-size:cover; background-position:center; display:flex; align-items:center; justify-content:center; color:#fff; text-align:center; padding:20px; }
+        .slide.active { opacity:1; }
+        .slide .overlay { background:rgba(45,45,45,0.75); padding:45px 55px; border-radius:var(--radius); max-width:780px; backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.1); }
+        .slide .overlay h2 { font-size:2.8rem; margin-bottom:12px; font-weight:700; }
+        .slide .overlay h2 i { margin-right:12px; color:var(--gold); }
+        .slide .overlay p { font-size:1.2rem; opacity:0.95; }
+        .slider-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.15); color:#fff; border:none; font-size:2.2rem; padding:12px 22px; cursor:pointer; border-radius:50%; backdrop-filter:blur(4px); transition:var(--transition); z-index:10; }
+        .slider-btn:hover { background:rgba(255,255,255,0.35); transform:translateY(-50%) scale(1.05); }
+        .slider-btn.prev { left:20px; }
+        .slider-btn.next { right:20px; }
+        .slider-dots { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:12px; z-index:10; }
+        .slider-dots span { width:14px; height:14px; border-radius:50%; background:rgba(255,255,255,0.4); cursor:pointer; transition:var(--transition); border:2px solid transparent; }
+        .slider-dots span.active { background:var(--gold); transform:scale(1.2); border-color:#fff; }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title { font-size:2rem; color:var(--primary-dark); margin:50px 0 20px; padding-bottom:14px; border-bottom:4px solid var(--accent); display:flex; align-items:center; gap:14px; position:relative; }
+        .section-title::after { content:''; position:absolute; bottom:-4px; left:0; width:80px; height:4px; background:var(--gold); }
+
+        /* ===== SAMBUTAN ===== */
+        .sambutan-box { background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); margin:20px 0 40px; overflow:hidden; display:flex; flex-wrap:wrap; border-left:6px solid var(--gold); }
+        .sambutan-left { flex:0 0 280px; background:var(--primary); padding:30px 20px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:#fff; }
+        .sambutan-left img { width:150px; height:150px; border-radius:50%; object-fit:cover; border:4px solid var(--gold); margin-bottom:16px; }
+        .sambutan-right { flex:1; padding:30px 35px; min-width:280px; }
+        .sambutan-right .title { font-size:1.4rem; font-weight:700; color:var(--primary-dark); margin-bottom:6px; }
+        .sambutan-right p { max-height:110px; overflow:hidden; transition:max-height 0.5s ease; }
+        .sambutan-right p.expanded { max-height:800px; }
+        .sambutan-right .read-more { color:var(--primary); font-weight:600; cursor:pointer; display:inline-block; margin-top:10px; }
+
+        /* ===== CARD GRID ===== */
+        .card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:28px; margin:20px 0 40px; }
+        .card { background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; transition:var(--transition); }
+        .card:hover { transform:translateY(-8px); box-shadow:var(--shadow-hover); }
+        .card-img { height:200px; background-size:cover; background-position:center; transition:var(--transition); }
+        .card-body { padding:20px 24px 26px; }
+        .card-body .badge { display:inline-block; background:var(--accent); color:var(--white); font-size:0.7rem; padding:2px 14px; border-radius:20px; margin-bottom:8px; font-weight:600; text-transform:uppercase; }
+        .card-body h4 { font-size:1.1rem; color:var(--primary-dark); margin-bottom:6px; }
+        .card-body .meta { font-size:0.85rem; color:var(--text-light); margin-bottom:10px; }
+        .card-body p { font-size:0.95rem; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+        .card-body .btn-link { display:inline-block; margin-top:14px; color:var(--primary); font-weight:600; font-size:0.95rem; cursor:pointer; }
+
+        /* ===== GRID 4 ===== */
+        .grid-4 { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:24px; margin:16px 0 40px; }
+        .grid-4 .item { background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px 18px; text-align:center; transition:var(--transition); border-bottom:4px solid transparent; }
+        .grid-4 .item:hover { transform:translateY(-6px); box-shadow:var(--shadow-hover); border-bottom-color:var(--primary); }
+        .grid-4 .item .icon { font-size:2.6rem; margin-bottom:8px; }
+        .grid-4 .item .thumb { width:100%; height:150px; background-size:cover; background-position:center; border-radius:8px; margin-bottom:10px; }
+
+        /* ===== FOOTER ===== */
+        .footer { background:var(--primary-dark); color:rgba(255,255,255,0.85); padding:50px 0 20px; margin-top:60px; border-top:4px solid var(--gold); }
+        .footer .container { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:40px; }
+        .footer h4 { color:#fff; margin-bottom:14px; font-size:1.15rem; display:flex; align-items:center; gap:8px; }
+        .footer h4 i { color:var(--gold); }
+        .footer .social-icons { display:flex; gap:12px; margin-top:8px; }
+        .footer .social-icons a { display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.08); transition:var(--transition); color:#fff; font-size:1.1rem; }
+        .footer .social-icons a:hover { background:var(--gold); color:var(--primary-dark); padding-left:0; }
+        .footer-bottom { border-top:1px solid rgba(255,255,255,0.12); padding-top:20px; margin-top:30px; text-align:center; font-size:0.9rem; grid-column:1 / -1; }
+
+        /* ===== HALAMAN LAIN ===== */
+        .page { display:none; animation:fade 0.3s; }
+        .page.active { display:block; }
+        @keyframes fade { from { opacity:0; } to { opacity:1; } }
+        .mini-hero { background:linear-gradient(135deg,var(--primary-dark),var(--primary-light)); color:#fff; padding:50px 0 40px; border-radius:0 0 var(--radius) var(--radius); margin-bottom:40px; text-align:center; }
+        .mini-hero h1 { font-size:2.6rem; font-weight:700; }
+        .mini-hero h1 i { margin-right:12px; color:var(--gold); }
+        .content-box { background:var(--white); border-radius:var(--radius); padding:32px 38px; box-shadow:var(--shadow); margin-bottom:32px; border-left:4px solid var(--gold); }
+        .content-box h2 { color:var(--primary-dark); margin-bottom:14px; font-size:1.8rem; }
+        .content-box h2 i { color:var(--gold); }
+        .table-wrap { overflow-x:auto; }
+        table { width:100%; border-collapse:collapse; font-size:0.95rem; }
+        table th { background:var(--secondary); color:var(--primary-dark); padding:14px 18px; text-align:left; border-bottom:3px solid var(--accent); font-weight:600; }
+        table td { padding:12px 18px; border-bottom:1px solid #e8f0ea; }
+        .form-group { margin-bottom:20px; }
+        .form-group label { display:block; font-weight:600; color:var(--primary-dark); margin-bottom:6px; }
+        .form-group input, .form-group textarea, .form-group select { width:100%; padding:12px 16px; border:2px solid #d0ddd4; border-radius:var(--radius); font-size:1rem; transition:var(--transition); background:#fafcfa; }
+        .btn-primary { background:var(--primary); color:#fff; border:none; padding:14px 36px; border-radius:var(--radius); font-size:1.05rem; font-weight:600; cursor:pointer; transition:var(--transition); display:inline-flex; align-items:center; gap:8px; }
+        .btn-primary:hover { background:var(--primary-light); transform:translateY(-2px); box-shadow:0 8px 20px rgba(74,74,74,0.3); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width:768px) {
+            .menu-toggle { display:flex !important; }
+            .nav-menu { display:none !important; width:100%; flex-direction:column; padding:20px 0 12px; gap:12px; background:var(--primary); position:absolute; top:100%; left:0; box-shadow:0 8px 20px rgba(0,0,0,0.2); border-radius:0 0 var(--radius) var(--radius); }
+            .nav-menu.open { display:flex !important; }
+            .dropdown-content { position:static; box-shadow:none; padding-left:20px; background:transparent; animation:none; display:none; }
+            .dropdown-content a { color:rgba(255,255,255,0.85); padding:6px 0; }
+            .dropdown.open .dropdown-content { display:block !important; }
+            .hero-slider { height:320px; }
+            .slide .overlay { padding:24px 28px; }
+            .slide .overlay h2 { font-size:1.8rem; }
+            .section-title { font-size:1.5rem; }
+            .card-grid { grid-template-columns:1fr 1fr; }
+            .grid-4 { grid-template-columns:1fr 1fr; }
+            .logo { font-size:1.2rem; }
+            .logo i { font-size:1.4rem; }
+        }
+        @media (max-width:480px) {
+            .card-grid { grid-template-columns:1fr; }
+            .grid-4 { grid-template-columns:1fr; }
+            .hero-slider { height:260px; }
+            .slide .overlay h2 { font-size:1.4rem; }
+            .btn-primary { width:100%; justify-content:center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== TOP BAR ===== -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="left">
+                <span><i class="fas fa-phone"></i> (0714) 123456</span>
+                <span><i class="fas fa-envelope"></i> kesbangpol@mubakab.go.id</span>
+            </div>
+            <div class="right">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-landmark"></i>
+                Kesbang<span>pol</span>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span><span></span><span></span>
+            </div>
+            <nav class="nav-menu" id="navMenu">
+                <a href="/" class="<%= currentPage === 'beranda' ? 'active' : '' %>"><i class="fas fa-home"></i> Beranda</a>
+                <div class="dropdown" id="dropdownProfil">
+                    <a href="/profil" class="<%= currentPage === 'profil' ? 'active' : '' %>"><i class="fas fa-users"></i> Profil</a>
+                    <div class="dropdown-content">
+                        <a href="/profil#pimpinan"><i class="fas fa-user-tie"></i> Pimpinan</a>
+                        <a href="/profil#sejarah"><i class="fas fa-history"></i> Sejarah</a>
+                        <a href="/profil#struktur"><i class="fas fa-sitemap"></i> Struktur</a>
+                        <a href="/profil#visi"><i class="fas fa-bullseye"></i> Visi & Misi</a>
+                        <a href="/profil#tugas"><i class="fas fa-tasks"></i> Tugas & Fungsi</a>
+                    </div>
+                </div>
+                <a href="/berita" class="<%= currentPage === 'berita' ? 'active' : '' %>"><i class="fas fa-newspaper"></i> Berita</a>
+                <a href="/agenda" class="<%= currentPage === 'agenda' ? 'active' : '' %>"><i class="fas fa-calendar-alt"></i> Agenda</a>
+                <div class="dropdown" id="dropdownDokumentasi">
+                    <a href="/galeri" class="<%= currentPage === 'galeri' ? 'active' : '' %>"><i class="fas fa-camera"></i> Dokumentasi</a>
+                    <div class="dropdown-content">
+                        <a href="/galeri"><i class="fas fa-images"></i> Galeri</a>
+                        <a href="/video"><i class="fas fa-video"></i> Video</a>
+                    </div>
+                </div>
+                <a href="/dokumen" class="<%= currentPage === 'dokumen' ? 'active' : '' %>"><i class="fas fa-file-alt"></i> Dokumen</a>
+                <a href="/saran" class="<%= currentPage === 'saran' ? 'active' : '' %>"><i class="fas fa-comment-dots"></i> Saran</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">

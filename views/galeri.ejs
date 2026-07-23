@@ -1,0 +1,17 @@
+<%- include('partials/header', { currentPage: 'galeri' }) %>
+
+<div class="mini-hero">
+    <h1><i class="fas fa-images"></i> Galeri Foto</h1>
+    <p>Dokumentasi kegiatan Kesbangpol</p>
+</div>
+
+<div class="grid-4">
+    <% foto.forEach(f => { %>
+        <div class="item">
+            <div class="thumb" style="background-image:url('<%= f.gambar %>');"></div>
+            <h5><%= f.judul %></h5>
+        </div>
+    <% }) %>
+</div>
+
+<%- include('partials/footer') %>

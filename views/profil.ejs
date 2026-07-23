@@ -1,0 +1,72 @@
+<%- include('partials/header', { currentPage: 'profil' }) %>
+
+<div class="mini-hero">
+    <h1><i class="fas fa-users"></i> Profil Dinas Kesbangpol</h1>
+    <p>Mengenal lebih dekat Dinas Kesatuan Bangsa dan Politik Kabupaten Muba</p>
+</div>
+
+<div id="pimpinan" class="content-box">
+    <h2><i class="fas fa-user-tie"></i> Profil Pimpinan</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:24px; margin-top:12px;">
+        <% pimpinan.forEach(p => { %>
+            <div style="text-align:center; background:var(--gray); padding:20px; border-radius:var(--radius);">
+                <img src="<%= p.foto %>" alt="<%= p.nama %>" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:4px solid var(--gold); margin:0 auto 12px;">
+                <h4><%= p.nama %></h4>
+                <p style="color:var(--text-light); font-size:0.9rem;"><%= p.jabatan %></p>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<div id="sejarah" class="content-box">
+    <h2><i class="fas fa-history"></i> Sejarah</h2>
+    <div style="position:relative; padding-left:30px; border-left:4px solid var(--gold); margin-left:10px;">
+        <% sejarah.forEach(s => { %>
+            <div style="margin-bottom:24px;">
+                <span style="background:var(--primary); color:#fff; padding:4px 14px; border-radius:20px; font-weight:600; display:inline-block; margin-bottom:6px;"><%= s.tahun %></span>
+                <p><%= s.deskripsi %></p>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<div id="struktur" class="content-box">
+    <h2><i class="fas fa-sitemap"></i> Struktur Organisasi</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; margin-top:12px;">
+        <% struktur.forEach(s => { %>
+            <div style="background:var(--secondary); padding:16px; border-radius:var(--radius); text-align:center;">
+                <i class="fas fa-user-tie" style="font-size:2rem; color:var(--gold);"></i>
+                <h4 style="margin:6px 0; font-size:0.95rem;"><%= s.jabatan %></h4>
+                <p style="font-size:0.85rem;"><%= s.nama %></p>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<div id="visi" class="content-box">
+    <h2><i class="fas fa-bullseye"></i> Visi &amp; Misi</h2>
+    <h3><i class="fas fa-eye" style="color:var(--gold);"></i> Visi</h3>
+    <p style="font-size:1.1rem; font-style:italic; background:var(--secondary); padding:16px 20px; border-radius:var(--radius);">
+        "<%= visiMisi.visi %>"
+    </p>
+    <h3 style="margin-top:20px;"><i class="fas fa-flag" style="color:var(--gold);"></i> Misi</h3>
+    <ol>
+        <% visiMisi.misi.forEach(m => { %>
+            <li><i class="fas fa-check-circle" style="color:var(--gold);"></i> <%= m %></li>
+        <% }) %>
+    </ol>
+</div>
+
+<div id="tugas" class="content-box">
+    <h2><i class="fas fa-tasks"></i> Tugas &amp; Fungsi</h2>
+    <h3>Tugas</h3>
+    <p><%= tugasFungsi.tugas %></p>
+    <h3 style="margin-top:16px;">Fungsi</h3>
+    <ul>
+        <% tugasFungsi.fungsi.forEach(f => { %>
+            <li><i class="fas fa-chevron-right" style="color:var(--gold);"></i> <%= f %></li>
+        <% }) %>
+    </ul>
+</div>
+
+<%- include('partials/footer') %>

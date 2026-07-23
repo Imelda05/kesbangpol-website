@@ -1,0 +1,41 @@
+<%- include('partials/header', { currentPage: 'dokumen' }) %>
+<div class="container">
+  <div class="mini-hero">
+    <h1><i class="fas fa-file-alt"></i> Dokumen</h1>
+    <p>Kumpulan dokumen resmi dan publikasi Kesbangpol</p>
+  </div>
+
+  <div class="content-box">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Judul Dokumen</th>
+            <th>Jenis</th>
+            <th>Tahun</th>
+            <th>Ukuran</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% dokumen.forEach((d, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= d.judul %></td>
+              <td><%= d.jenis %></td>
+              <td><%= d.tahun %></td>
+              <td><%= d.ukuran %></td>
+              <td>
+                <a href="#" class="btn-download" onclick="alert('Unduh: <%= d.judul %>'); return false;">
+                  <i class="fas fa-download"></i> Unduh
+                </a>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') %>
