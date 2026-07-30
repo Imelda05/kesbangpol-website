@@ -4,1369 +4,849 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kesbangpol Kabupaten Musi Banyuasin</title>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        /* ===== RESET & VARIABLES ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        :root {
-            --smokey-green: #2f4f4f;
-            --smokey-green-light: #4a7a7a;
-            --smokey-green-dark: #1e3535;
-            --smokey-green-pale: #e8f0f0;
-            --smokey-green-bg: #f4f8f8;
-            --gold: #c9a84c;
-            --gold-light: #e8d48b;
-            --text-dark: #1e2a2a;
-            --text-light: #f0f6f6;
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            --radius: 12px;
-            --transition: 0.3s ease;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--smokey-green-bg);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        /* ===== RESET & VARIABEL ===== */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:#f0f0f0; color:#2d2d2d; line-height:1.6; }
+        a { text-decoration:none; color:inherit; }
+        ul { list-style:none; }
+        img { max-width:100%; display:block; }
+        .container { max-width:1200px; margin:0 auto; padding:0 20px; }
+        :root { --primary:#4a4a4a; --primary-dark:#2d2d2d; --primary-light:#6b6b6b; --secondary:#e8e8e8; --gold:#b0a88a; --white:#ffffff; --shadow:0 8px 30px rgba(0,0,0,0.10); --radius:10px; --transition:0.3s ease; }
 
-        /* ===== BUTTONS ===== */
-        .btn-primary {
-            display: inline-block;
-            background: var(--smokey-green);
-            color: #fff;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 4px 12px rgba(47, 79, 79, 0.3);
-        }
-        .btn-primary:hover {
-            background: var(--smokey-green-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(47, 79, 79, 0.4);
-        }
-        .btn-outline {
-            display: inline-block;
-            background: transparent;
-            color: var(--smokey-green);
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border: 2px solid var(--smokey-green);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .btn-outline:hover {
-            background: var(--smokey-green);
-            color: #fff;
-        }
-        .btn-gold {
-            display: inline-block;
-            background: var(--gold);
-            color: #fff;
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .btn-gold:hover {
-            background: #b8942e;
-            transform: translateY(-2px);
-        }
+        /* ===== TOP BAR ===== */
+        .top-bar { background:var(--primary-dark); color:rgba(255,255,255,0.8); font-size:0.8rem; padding:6px 0; border-bottom:2px solid var(--gold); }
+        .top-bar .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+        .top-bar .left { display:flex; align-items:center; gap:16px; }
+        .top-bar .left i { color:var(--gold); margin-right:4px; }
+        .top-bar .right { display:flex; align-items:center; gap:14px; }
+        .top-bar .right a:hover { color:var(--gold); }
 
         /* ===== NAVBAR ===== */
-        .navbar {
-            background: #fff;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 0 20px;
-        }
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 72px;
-            flex-wrap: wrap;
-        }
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .nav-logo .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--smokey-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 22px;
-            font-weight: 800;
-        }
-        .nav-logo span {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--smokey-green-dark);
-        }
-        .nav-logo span small {
-            font-weight: 400;
-            font-size: 0.75rem;
-            display: block;
-            color: #6b7a7a;
-            letter-spacing: 0.5px;
-        }
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-        .nav-links li {
-            position: relative;
-        }
-        .nav-links a {
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--text-dark);
-            transition: var(--transition);
-            padding: 8px 0;
-            display: inline-block;
-        }
-        .nav-links a:hover {
-            color: var(--smokey-green);
-        }
-        .nav-links .dropdown-content {
-            display: none;
-            position: absolute;
-            background: #fff;
-            min-width: 220px;
-            box-shadow: var(--shadow);
-            border-radius: var(--radius);
-            padding: 12px 0;
-            top: 36px;
-            left: 0;
-            z-index: 100;
-        }
-        .nav-links li:hover .dropdown-content {
-            display: block;
-        }
-        .dropdown-content a {
-            display: block;
-            padding: 8px 20px;
-            font-size: 0.85rem;
-            color: var(--text-dark);
-            border-bottom: 1px solid #f0f4f4;
-        }
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-        .dropdown-content a:hover {
-            background: var(--smokey-green-pale);
-            color: var(--smokey-green);
-        }
-        .nav-hamburger {
-            display: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--smokey-green-dark);
-        }
+        .navbar { background:var(--primary); padding:14px 0; position:sticky; top:0; z-index:999; box-shadow:0 4px 20px rgba(0,0,0,0.2); }
+        .navbar .container { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; position:relative; }
+        .logo { color:var(--white); font-size:1.5rem; font-weight:700; display:flex; align-items:center; gap:10px; }
+        .logo i { color:var(--gold); font-size:1.8rem; }
+        .logo span { color:var(--gold); font-weight:300; }
+        .nav-menu { display:flex; flex-wrap:wrap; gap:6px 18px; align-items:center; }
+        .nav-menu a { color:rgba(255,255,255,0.9); font-size:0.95rem; padding:8px 0; border-bottom:3px solid transparent; transition:var(--transition); font-weight:500; cursor:pointer; display:flex; align-items:center; gap:4px; }
+        .nav-menu a:hover, .nav-menu a.active { color:#fff; border-bottom-color:var(--gold); }
+        .dropdown { position:relative; }
+        .dropdown>a::after { content:" ▾"; font-size:0.65rem; }
+        .dropdown-content { display:none; position:absolute; top:100%; left:0; background:var(--white); min-width:200px; box-shadow:var(--shadow); border-radius:var(--radius); padding:10px 0; z-index:100; animation:fadeDown 0.25s ease; }
+        .dropdown-content a { color:var(--primary-dark); padding:10px 24px; display:block; border-bottom:none; font-size:0.9rem; font-weight:400; transition:var(--transition); }
+        .dropdown-content a:hover { background:var(--secondary); color:var(--primary); padding-left:28px; }
+        .dropdown.open .dropdown-content { display:block; }
+        @keyframes fadeDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
+
+        /* ===== MENU TOGGLE ===== */
+        .menu-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px 4px; z-index:1000; background:transparent; border:none; }
+        .menu-toggle span { display:block; width:28px; height:3px; background:#fff; border-radius:4px; transition:0.3s ease; }
 
         /* ===== HERO SLIDER ===== */
-        .hero-slider {
-            position: relative;
-            height: 520px;
-            overflow: hidden;
-            border-radius: 0 0 40px 40px;
-            margin-bottom: 0;
-        }
-        .slider-track {
-            display: flex;
-            transition: transform 0.7s ease-in-out;
-            height: 100%;
-        }
-        .slide {
-            min-width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .slide::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(30, 42, 42, 0.55);
-            backdrop-filter: blur(2px);
-        }
-        .slide-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: #fff;
-            max-width: 720px;
-            padding: 0 20px;
-        }
-        .slide-content h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        }
-        .slide-content p {
-            font-size: 1.15rem;
-            opacity: 0.9;
-            margin-bottom: 28px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        .slider-dots {
-            position: absolute;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-            z-index: 5;
-        }
-        .slider-dots span {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .slider-dots span.active {
-            background: var(--gold);
-            transform: scale(1.2);
-        }
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(6px);
-            color: #fff;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            cursor: pointer;
-            z-index: 5;
-            transition: var(--transition);
-            border: none;
-        }
-        .slider-arrow:hover {
-            background: rgba(255, 255, 255, 0.35);
-        }
-        .slider-arrow.prev {
-            left: 24px;
-        }
-        .slider-arrow.next {
-            right: 24px;
-        }
+        .hero-slider { position:relative; width:100%; height:480px; overflow:hidden; border-radius:var(--radius); margin:30px 0 20px; box-shadow:var(--shadow); }
+        .slide { position:absolute; inset:0; opacity:0; transition:opacity 1s ease; background-size:cover; background-position:center; display:flex; align-items:center; justify-content:center; color:#fff; text-align:center; padding:20px; }
+        .slide.active { opacity:1; }
+        .slide .overlay { background:rgba(45,45,45,0.75); padding:40px 50px; border-radius:var(--radius); max-width:750px; backdrop-filter:blur(4px); }
+        .slide .overlay h2 { font-size:2.8rem; margin-bottom:12px; font-weight:700; }
+        .slide .overlay h2 i { color:var(--gold); margin-right:12px; }
+        .slide .overlay p { font-size:1.2rem; opacity:0.95; }
+        .slider-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.15); color:#fff; border:none; font-size:2rem; padding:10px 18px; cursor:pointer; border-radius:50%; backdrop-filter:blur(4px); transition:var(--transition); z-index:10; }
+        .slider-btn:hover { background:rgba(255,255,255,0.35); }
+        .slider-btn.prev { left:16px; }
+        .slider-btn.next { right:16px; }
+        .slider-dots { position:absolute; bottom:16px; left:50%; transform:translateX(-50%); display:flex; gap:12px; z-index:10; }
+        .slider-dots span { width:14px; height:14px; border-radius:50%; background:rgba(255,255,255,0.4); cursor:pointer; transition:var(--transition); border:2px solid transparent; }
+        .slider-dots span.active { background:var(--gold); transform:scale(1.2); border-color:#fff; }
 
-        /* ===== SECTIONS ===== */
-        section {
-            padding: 60px 0;
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .section-header h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--smokey-green-dark);
-        }
-        .section-header .line {
-            width: 60px;
-            height: 4px;
-            background: var(--gold);
-            margin: 10px auto 0;
-            border-radius: 4px;
-        }
+        /* ===== SECTION TITLE ===== */
+        .section-title { font-size:2rem; color:var(--primary-dark); margin:50px 0 20px; padding-bottom:14px; border-bottom:4px solid var(--secondary); display:flex; align-items:center; gap:14px; position:relative; }
+        .section-title::after { content:''; position:absolute; bottom:-4px; left:0; width:80px; height:4px; background:var(--gold); }
+        .section-title i { color:var(--primary-light); }
+        .section-title small { font-size:0.95rem; font-weight:400; color:var(--primary-light); margin-left:auto; cursor:pointer; transition:var(--transition); }
+        .section-title small:hover { color:var(--primary); text-decoration:underline; }
 
-        /* ===== TABS ===== */
-        .tab-container {
-            background: #fff;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-        }
-        .tab-nav {
-            display: flex;
-            flex-wrap: wrap;
-            background: var(--smokey-green-pale);
-            border-bottom: 2px solid var(--smokey-green);
-        }
-        .tab-nav button {
-            flex: 1 1 auto;
-            padding: 14px 20px;
-            background: transparent;
-            border: none;
-            font-weight: 600;
-            color: var(--text-dark);
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9rem;
-            border-bottom: 3px solid transparent;
-        }
-        .tab-nav button.active {
-            background: #fff;
-            color: var(--smokey-green);
-            border-bottom-color: var(--gold);
-        }
-        .tab-pane {
-            display: none;
-            padding: 28px 30px;
-        }
-        .tab-pane.active {
-            display: block;
-        }
+        /* ===== SAMBUTAN ===== */
+        .sambutan-box { background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); margin:20px 0 40px; overflow:hidden; display:flex; flex-wrap:wrap; border-left:6px solid var(--gold); }
+        .sambutan-left { flex:0 0 280px; background:var(--primary); padding:30px 20px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:#fff; }
+        .sambutan-left img { width:140px; height:140px; border-radius:50%; object-fit:cover; border:4px solid var(--gold); margin-bottom:16px; }
+        .sambutan-left h3 { font-size:1.1rem; }
+        .sambutan-right { flex:1; padding:30px 35px; min-width:280px; }
+        .sambutan-right .title { font-size:1.3rem; font-weight:700; color:var(--primary-dark); margin-bottom:4px; }
+        .sambutan-right .sub { color:var(--primary-light); font-size:0.9rem; margin-bottom:12px; }
+        .sambutan-right p { font-size:1rem; max-height:110px; overflow:hidden; transition:max-height 0.5s ease; }
+        .sambutan-right p.expanded { max-height:800px; }
+        .sambutan-right .read-more { color:var(--primary); font-weight:600; cursor:pointer; display:inline-block; margin-top:10px; }
 
-        /* ===== CARDS ===== */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-        .card {
-            background: #fff;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 20px 22px;
-            transition: var(--transition);
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-        }
-        .card h4 {
-            color: var(--smokey-green-dark);
-            margin-bottom: 8px;
-        }
-        .card p {
-            color: #4d5f5f;
-            font-size: 0.95rem;
-        }
+        /* ===== STATISTIK ===== */
+        .statistik-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:24px; margin:30px 0; }
+        .stat-item { background:var(--white); border-radius:var(--radius); padding:24px 20px; text-align:center; box-shadow:var(--shadow); transition:var(--transition); border-bottom:4px solid var(--primary); }
+        .stat-item:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.15); }
+        .stat-item .number { font-size:2.6rem; font-weight:700; color:var(--primary); }
+        .stat-item .label { font-size:1rem; color:var(--primary-light); margin-top:4px; }
+        .stat-item i { font-size:2rem; color:var(--gold); margin-bottom:8px; display:block; }
 
-        /* ===== BERITA ===== */
-        .berita-card .img-placeholder {
-            height: 160px;
-            background: var(--smokey-green-pale);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--smokey-green);
-            font-weight: 500;
-            border-radius: var(--radius) var(--radius) 0 0;
-        }
-        .berita-card .body {
-            padding: 16px 20px 20px;
-        }
-        .berita-card .body .tag {
-            display: inline-block;
-            background: var(--gold);
-            color: #fff;
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 4px 14px;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 10px;
-        }
+        /* ===== CARD GRID ===== */
+        .card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:28px; margin:20px 0 40px; }
+        .card { background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; transition:var(--transition); }
+        .card:hover { transform:translateY(-8px); box-shadow:0 12px 40px rgba(0,0,0,0.18); }
+        .card-img { height:190px; background-size:cover; background-position:center; }
+        .card-body { padding:18px 22px 24px; }
+        .card-body .badge { display:inline-block; background:var(--secondary); color:var(--primary-dark); font-size:0.7rem; padding:2px 14px; border-radius:20px; margin-bottom:8px; font-weight:600; text-transform:uppercase; }
+        .card-body h4 { font-size:1.05rem; color:var(--primary-dark); margin-bottom:4px; }
+        .card-body .meta { font-size:0.85rem; color:var(--primary-light); margin-bottom:8px; }
+        .card-body p { font-size:0.95rem; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+        .card-body .btn-link { display:inline-block; margin-top:12px; color:var(--primary); font-weight:600; font-size:0.9rem; cursor:pointer; transition:var(--transition); }
+        .card-body .btn-link:hover { text-decoration:underline; }
 
-        /* ===== PROFILE PEGAWAI ===== */
-        .pegawai-list {
-            list-style: none;
-            padding: 0;
-        }
-        .pegawai-list li {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #eef3f3;
-        }
-        .pegawai-list li:last-child {
-            border-bottom: none;
-        }
-        .pegawai-list .jabatan {
-            font-weight: 600;
-            color: var(--smokey-green);
-        }
-
-        /* ===== DOKUMEN TABLE ===== */
-        .dokumen-table-wrap {
-            overflow-x: auto;
-            background: var(--smokey-green-bg);
-            border-radius: var(--radius);
-            padding: 4px;
-            box-shadow: var(--shadow);
-        }
-        .dokumen-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #fff;
-            border-radius: var(--radius);
-            overflow: hidden;
-        }
-        .dokumen-table th {
-            background: var(--smokey-green);
-            color: #fff;
-            padding: 12px 18px;
-            text-align: left;
-            font-weight: 600;
-        }
-        .dokumen-table td {
-            padding: 12px 18px;
-            border-bottom: 1px solid #eef3f3;
-            color: #3d4f4f;
-        }
-        .dokumen-table tr:last-child td {
-            border-bottom: none;
-        }
-        .btn-download {
-            background: var(--smokey-green);
-            color: #fff;
-            padding: 6px 18px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .btn-download:hover {
-            background: var(--smokey-green-dark);
-        }
-
-        /* ===== FORM ===== */
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            font-weight: 600;
-            display: block;
-            margin-bottom: 6px;
-            color: var(--smokey-green-dark);
-        }
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #dce6e6;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: var(--transition);
-            background: #fafcfc;
-        }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--smokey-green);
-            box-shadow: 0 0 0 4px rgba(47, 79, 79, 0.1);
-        }
-        .form-group textarea {
-            height: 100px;
-            resize: vertical;
-        }
-
-        /* ===== STATISTICS ===== */
-        .stats-section {
-            background: var(--smokey-green);
-            color: #fff;
-            padding: 50px 0;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            text-align: center;
-        }
-        .stat-item .number {
-            font-size: 2.6rem;
-            font-weight: 800;
-            display: block;
-            line-height: 1.2;
-        }
-        .stat-item .label {
-            font-size: 0.95rem;
-            opacity: 0.8;
-        }
+        /* ===== GRID 4 ===== */
+        .grid-4 { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:24px; margin:16px 0 40px; }
+        .grid-4 .item { background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px 16px; text-align:center; transition:var(--transition); border-bottom:4px solid transparent; }
+        .grid-4 .item:hover { transform:translateY(-6px); box-shadow:0 12px 40px rgba(0,0,0,0.15); border-bottom-color:var(--primary); }
+        .grid-4 .item .icon { font-size:2.4rem; margin-bottom:6px; }
+        .grid-4 .item h5 { color:var(--primary-dark); font-size:0.95rem; margin-bottom:4px; }
+        .grid-4 .item .date { font-size:0.8rem; color:var(--primary-light); }
+        .grid-4 .item .thumb { width:100%; height:140px; background-size:cover; background-position:center; border-radius:8px; margin-bottom:10px; }
 
         /* ===== FOOTER ===== */
-        .footer {
-            background: var(--smokey-green-dark);
-            color: #cbd8d8;
-            padding: 40px 0 20px;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-        .footer h4 {
-            color: #fff;
-            font-weight: 700;
-            margin-bottom: 16px;
-            font-size: 1.1rem;
-        }
-        .footer p,
-        .footer li {
-            font-size: 0.95rem;
-            opacity: 0.8;
-            line-height: 1.7;
-        }
-        .footer ul {
-            list-style: none;
-            padding: 0;
-        }
-        .footer ul li {
-            margin-bottom: 10px;
-        }
-        .footer ul li a {
-            opacity: 0.8;
-            transition: var(--transition);
-        }
-        .footer ul li a:hover {
-            opacity: 1;
-            color: var(--gold);
-        }
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 20px;
-            text-align: center;
-            font-size: 0.85rem;
-            opacity: 0.6;
-        }
+        .footer { background:var(--primary-dark); color:rgba(255,255,255,0.85); padding:40px 0 20px; margin-top:50px; border-top:4px solid var(--gold); }
+        .footer .container { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:30px; }
+        .footer h4 { color:#fff; margin-bottom:12px; font-size:1.1rem; display:flex; align-items:center; gap:8px; }
+        .footer h4 i { color:var(--gold); }
+        .footer .social-icons { display:flex; gap:10px; margin-top:8px; }
+        .footer .social-icons a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.08); transition:var(--transition); color:#fff; font-size:1rem; }
+        .footer .social-icons a:hover { background:var(--gold); color:var(--primary-dark); }
+        .footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:18px; margin-top:25px; text-align:center; font-size:0.85rem; grid-column:1/-1; }
 
-        /* ===== MODAL ===== */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(4px);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .modal-overlay.active {
-            display: flex;
-        }
-        .modal-box {
-            background: #fff;
-            max-width: 520px;
-            width: 100%;
-            padding: 36px 40px;
-            border-radius: var(--radius);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-            animation: modalIn 0.3s ease;
-            text-align: center;
-        }
-        @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: scale(0.92) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-        .modal-box h3 {
-            font-size: 1.5rem;
-            color: var(--smokey-green-dark);
-            margin-bottom: 8px;
-        }
-        .modal-box p {
-            color: #4d5f5f;
-            margin-bottom: 20px;
-        }
+        /* ===== PAGE ===== */
+        .page { display:none; animation:fade 0.3s; }
+        .page.active { display:block; }
+        @keyframes fade { from { opacity:0; } to { opacity:1; } }
+        .mini-hero { background:linear-gradient(135deg,var(--primary-dark),var(--primary-light)); color:#fff; padding:40px 0 30px; border-radius:0 0 var(--radius) var(--radius); margin-bottom:30px; text-align:center; }
+        .mini-hero h1 { font-size:2.2rem; font-weight:700; }
+        .mini-hero h1 i { color:var(--gold); margin-right:12px; }
+        .mini-hero p { opacity:0.9; font-size:1.05rem; }
+        .content-box { background:var(--white); border-radius:var(--radius); padding:28px 32px; box-shadow:var(--shadow); margin-bottom:28px; border-left:4px solid var(--gold); }
+        .content-box h2 { color:var(--primary-dark); margin-bottom:12px; font-size:1.6rem; display:flex; align-items:center; gap:10px; }
+        .content-box h2 i { color:var(--gold); }
+        .content-box ul, .content-box ol { padding-left:22px; margin:10px 0; }
+        .content-box li { margin-bottom:6px; }
+        .table-wrap { overflow-x:auto; }
+        table { width:100%; border-collapse:collapse; font-size:0.95rem; }
+        table th { background:var(--secondary); color:var(--primary-dark); padding:12px 16px; text-align:left; border-bottom:3px solid var(--secondary); font-weight:600; }
+        table td { padding:10px 16px; border-bottom:1px solid #eee; }
+        .form-group { margin-bottom:18px; }
+        .form-group label { display:block; font-weight:600; color:var(--primary-dark); margin-bottom:4px; }
+        .form-group input, .form-group textarea, .form-group select { width:100%; padding:10px 14px; border:2px solid #ddd; border-radius:var(--radius); font-size:1rem; transition:var(--transition); background:#fafafa; }
+        .form-group input:focus, .form-group textarea:focus { border-color:var(--primary); outline:none; box-shadow:0 0 0 3px rgba(74,74,74,0.15); background:#fff; }
+        .btn-primary { background:var(--primary); color:#fff; border:none; padding:12px 32px; border-radius:var(--radius); font-size:1rem; font-weight:600; cursor:pointer; transition:var(--transition); display:inline-flex; align-items:center; gap:8px; }
+        .btn-primary:hover { background:var(--primary-light); transform:translateY(-2px); box-shadow:0 8px 20px rgba(74,74,74,0.3); }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 992px) {
-            .grid-3,
-            .grid-4 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+        @media (max-width:768px) {
+            .menu-toggle { display:flex !important; }
+            .nav-menu { display:none !important; width:100%; flex-direction:column; padding:20px 0 12px; gap:12px; background:var(--primary); position:absolute; top:100%; left:0; box-shadow:0 8px 20px rgba(0,0,0,0.2); border-radius:0 0 var(--radius) var(--radius); }
+            .nav-menu.open { display:flex !important; }
+            .dropdown-content { position:static; box-shadow:none; padding-left:20px; background:transparent; animation:none; display:none; }
+            .dropdown-content a { color:rgba(255,255,255,0.85); padding:6px 0; }
+            .dropdown.open .dropdown-content { display:block !important; }
+            .hero-slider { height:300px; }
+            .slide .overlay { padding:24px 28px; }
+            .slide .overlay h2 { font-size:1.8rem; }
+            .slide .overlay p { font-size:0.95rem; }
+            .section-title { font-size:1.4rem; }
+            .card-grid { grid-template-columns:1fr 1fr; }
+            .grid-4 { grid-template-columns:1fr 1fr; }
+            .logo { font-size:1.2rem; }
+            .logo i { font-size:1.4rem; }
+            .sambutan-left { flex:0 0 100%; }
+            .sambutan-left img { width:120px; height:120px; }
+            .statistik-grid { grid-template-columns:1fr 1fr; }
+            .mini-hero h1 { font-size:1.8rem; }
         }
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                background: #fff;
-                position: absolute;
-                top: 72px;
-                left: 0;
-                width: 100%;
-                padding: 20px 24px;
-                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-                gap: 12px;
-            }
-            .nav-links.open {
-                display: flex;
-            }
-            .nav-hamburger {
-                display: block;
-            }
-            .nav-links li .dropdown-content {
-                position: static;
-                box-shadow: none;
-                padding-left: 16px;
-                border-left: 2px solid var(--smokey-green);
-                margin-top: 4px;
-            }
-            .nav-links li:hover .dropdown-content {
-                display: none;
-            }
-            .nav-links li.open-dropdown .dropdown-content {
-                display: block;
-            }
-
-            .hero-slider {
-                height: 380px;
-            }
-            .slide-content h1 {
-                font-size: 1.8rem;
-            }
-            .slider-arrow {
-                width: 38px;
-                height: 38px;
-                font-size: 1.2rem;
-            }
-            .slider-arrow.prev {
-                left: 12px;
-            }
-            .slider-arrow.next {
-                right: 12px;
-            }
-            .tab-nav button {
-                font-size: 0.8rem;
-                padding: 10px 12px;
-            }
-            .grid-3,
-            .grid-4 {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        @media (max-width: 480px) {
-            .hero-slider {
-                height: 300px;
-            }
-            .slide-content h1 {
-                font-size: 1.4rem;
-            }
-            .modal-box {
-                padding: 28px 20px;
-            }
+        @media (max-width:480px) {
+            .hero-slider { height:240px; }
+            .slide .overlay h2 { font-size:1.3rem; }
+            .slide .overlay p { font-size:0.85rem; }
+            .card-grid { grid-template-columns:1fr; }
+            .grid-4 { grid-template-columns:1fr; }
+            .statistik-grid { grid-template-columns:1fr; }
+            .content-box { padding:18px; }
+            .btn-primary { width:100%; justify-content:center; }
+            .top-bar .left, .top-bar .right { flex-wrap:wrap; justify-content:center; }
+            .top-bar { font-size:0.7rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ===== TOP BAR ===== -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="left">
+                <span><i class="fas fa-phone"></i> (0714) 123456</span>
+                <span><i class="fas fa-envelope"></i> kesbangpol@mubakab.go.id</span>
+            </div>
+            <div class="right">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
     <!-- ===== NAVBAR ===== -->
-    <nav class="navbar">
+    <header class="navbar">
         <div class="container">
-            <div class="nav-logo">
-                <div class="logo-icon">K</div>
-                <span>Kesbangpol <small>Kab. Muba</small></span>
+            <div class="logo">
+                <i class="fas fa-landmark"></i>
+                Kesbang<span>pol</span>
             </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#beranda">Beranda</a></li>
-                <li>
-                    <a href="#tentang">Tentang <i class="fas fa-chevron-down"></i></a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-menu" id="navMenu">
+                <a class="active" data-page="beranda"><i class="fas fa-home"></i> Beranda</a>
+                <div class="dropdown" id="dropdownProfil">
+                    <a data-page="profil"><i class="fas fa-users"></i> Profil</a>
                     <div class="dropdown-content">
-                        <a href="#" onclick="openModal('Tentang Kesbangpol','Sejarah dan latar belakang Kesbangpol Kab. Muba.')">Tentang Kesbangpol</a>
-                        <a href="#" onclick="openModal('Visi dan Misi','Visi: Muba harmonis. Misi: tingkatkan wawasan kebangsaan.')">Visi dan Misi</a>
-                        <a href="#" onclick="openModal('Tugas dan Fungsi','Melaksanakan urusan pemerintahan di bidang kesatuan bangsa dan politik.')">Tugas dan Fungsi</a>
-                        <a href="#" onclick="openModal('Struktur Organisasi','Kepala Dinas, Sekretaris, 4 Bidang, dan Kelompok Jabatan Fungsional.')">Struktur Organisasi</a>
-                        <a href="#" onclick="openModal('Data Kepegawaian','Jumlah pegawai: 45 orang PNS dan 10 tenaga kontrak.')">Data Kepegawaian</a>
-                        <a href="#kontak">Hubungi Kami</a>
-                        <a href="#" onclick="openModal('Tujuan Jangka Menengah','Meningkatkan indeks kerukunan dan partisipasi politik masyarakat.')">Tujuan Jangka Menengah</a>
-                        <a href="#" onclick="openModal('Agenda Kesbangpol','Lihat agenda terbaru di bagian Agenda.')">Agenda Kesbangpol</a>
-                        <a href="#" onclick="openModal('Rencana Program Kerja','Program prioritas: Pendidikan politik, Penguatan ormas, Pemilu damai.')">Rencana Program Kerja</a>
-                        <a href="#" onclick="openModal('Strategi dan Kebijakan','Pendekatan partisipatif, sinergi dengan forkopimda.')">Strategi dan Kebijakan</a>
-                        <a href="#" onclick="openModal('Renstra Kesbangpol','Renstra 2026-2030 telah disusun dengan target IKU.')">Renstra</a>
-                        <a href="#" onclick="openModal('Indikator Kinerja Utama','IKU: Persentase desa damai, partisipasi pemilih, dll.')">IKU</a>
-                        <a href="#" onclick="openModal('Kinerja Pelayanan','Survei kepuasan masyarakat dilakukan setiap tahun.')">Kinerja Pelayanan</a>
-                        <a href="#" onclick="openModal('LAKIP','Laporan Akuntabilitas Kinerja 2025 tersedia di bagian SAKIP.')">LAKIP</a>
-                        <a href="#" onclick="openModal('Landasan Hukum','UU No. 23/2014, Perda Muba No. 5/2021.')">Landasan Hukum</a>
+                        <a data-page="profil" data-sub="pimpinan"><i class="fas fa-user-tie"></i> Pimpinan</a>
+                        <a data-page="profil" data-sub="sejarah"><i class="fas fa-history"></i> Sejarah</a>
+                        <a data-page="profil" data-sub="struktur"><i class="fas fa-sitemap"></i> Struktur</a>
+                        <a data-page="profil" data-sub="visi"><i class="fas fa-bullseye"></i> Visi & Misi</a>
+                        <a data-page="profil" data-sub="tugas"><i class="fas fa-tasks"></i> Tugas & Fungsi</a>
                     </div>
-                </li>
-                <li>
-                    <a href="#profil-pegawai">Profil Pegawai <i class="fas fa-chevron-down"></i></a>
+                </div>
+                <a data-page="berita"><i class="fas fa-newspaper"></i> Berita</a>
+                <a data-page="agenda"><i class="fas fa-calendar-alt"></i> Agenda</a>
+                <div class="dropdown" id="dropdownDokumentasi">
+                    <a data-page="dokumentasi"><i class="fas fa-camera"></i> Dokumentasi</a>
                     <div class="dropdown-content">
-                        <a href="#" onclick="openModal('Kepala Dinas','Dr. Ir. H. Ahmad Fauzi, M.Si')">Kepala Dinas</a>
-                        <a href="#" onclick="openModal('Sekretaris','Dra. Siti Rahma, M.A.P')">Sekretaris</a>
-                        <a href="#" onclick="openModal('Kabid Kewaspadaan Nasional','Drs. Agus Widodo, M.Si')">Kabid Kewaspadaan</a>
-                        <a href="#" onclick="openModal('Kabid Bina Ideologi','Hj. Nurhayati, S.Pd., M.Pd')">Kabid Bina Ideologi</a>
-                        <a href="#" onclick="openModal('Kabid Fasilitasi Politik','Dr. M. Ridwan, SH., MH')">Kabid Fasilitasi Politik</a>
-                        <a href="#" onclick="openModal('Kabid Ketahanan Sosial','Ir. Bambang, M.Si')">Kabid Ketahanan Sosial</a>
-                        <a href="#" onclick="openModal('Daftar Pegawai','Seluruh pegawai Kesbangpol Muba.')">Daftar Pegawai</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="#ppid">PPID <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="#" onclick="openModal('Profil PPID','PPID Kesbangpol Muba')">Profil PPID</a>
-                        <a href="#" onclick="openModal('Maklumat PPID','Komitmen layanan informasi publik.')">Maklumat</a>
-                        <a href="#" onclick="openModal('Informasi Berkala','Laporan tahunan, peraturan, dll.')">Informasi Berkala</a>
-                        <a href="#" onclick="openModal('Informasi Serta Merta','Pengumuman mendesak.')">Serta Merta</a>
-                        <a href="#" onclick="openModal('Informasi Tersedia Setiap Saat','Profil, struktur, kontak.')">Tersedia Setiap Saat</a>
-                        <a href="#" onclick="openModal('Informasi Dikecualikan','Data pribadi, rahasia negara.')">Dikecualikan</a>
-                        <a href="#" onclick="openModal('Standar Biaya','Biaya fotokopi dan materai.')">Standar Biaya</a>
-                        <a href="#" onclick="openModal('Form Keberatan','Ajukan keberatan informasi.')">Form Keberatan</a>
-                        <a href="#" onclick="openModal('SOP','Standar operasional prosedur PPID.')">SOP</a>
-                        <a href="#" onclick="openModal('Permohonan Online','Isi formulir permohonan informasi.')">Permohonan Online</a>
-                        <a href="#" onclick="openModal('Buku Register','Catatan permohonan yang masuk.')">Buku Register</a>
-                        <a href="#" onclick="openModal('Jadwal Pelayanan','Senin-Jumat 08.00-16.00.')">Jadwal Pelayanan</a>
-                        <a href="#" onclick="openModal('Pengajuan Keberatan Online','Form keberatan daring.')">Keberatan Online</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="#layanan">Layanan Publik <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="#" onclick="openModal('Pendaftaran Ormas','Pendaftaran organisasi masyarakat.')">Pendaftaran Ormas</a>
-                        <a href="#" onclick="openModal('Izin Penelitian','Perizinan penelitian di wilayah Muba.')">Izin Penelitian</a>
-                    </div>
-                </li>
-                <li><a href="#sakip">SAKIP</a></li>
-                <li><a href="#sdi">SDI Banten</a></li>
-                <li><a href="#berita">Berita</a></li>
-                <li><a href="#galeri">Galeri</a></li>
-                <li><a href="#kontak">Kontak</a></li>
-            </ul>
-            <div class="nav-hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
-        </div>
-    </nav>
-
-    <!-- ===== HERO SLIDER ===== -->
-    <section id="beranda" class="hero-slider">
-        <div class="slider-track" id="sliderTrack">
-            <div class="slide" style="background-image: linear-gradient(135deg, #1e3535 0%, #2f4f4f 100%);">
-                <div class="slide-content">
-                    <h1>Selamat Datang di Portal Kesbangpol Muba</h1>
-                    <p>Menjaga kerukunan, toleransi, dan semangat kebangsaan untuk Muba yang harmonis.</p>
-                    <a href="#tentang" class="btn-primary">Pelajari Lebih Lanjut</a>
-                </div>
-            </div>
-            <div class="slide" style="background-image: linear-gradient(135deg, #2f4f4f 0%, #4a7a7a 100%);">
-                <div class="slide-content">
-                    <h1>Rakor Pemilu Damai 2026</h1>
-                    <p>Kesbangpol menggelar rapat koordinasi dengan KPU dan Bawaslu untuk menyukseskan Pemilu Damai.</p>
-                    <a href="#" class="btn-primary" onclick="openModal('Rakor Pemilu Damai','Kesbangpol menggelar rakor dengan KPU dan Bawaslu.')">Baca Selengkapnya</a>
-                </div>
-            </div>
-            <div class="slide" style="background-image: linear-gradient(135deg, #4a7a7a 0%, #6b9e9e 100%);">
-                <div class="slide-content">
-                    <h1>Sosialisasi Wawasan Kebangsaan</h1>
-                    <p>Tim Kesbangpol memberikan materi wawasan kebangsaan kepada masyarakat dan generasi muda.</p>
-                    <a href="#" class="btn-primary" onclick="openModal('Sosialisasi Wawasan','Tim Kesbangpol memberikan materi wawasan kebangsaan.')">Baca Selengkapnya</a>
-                </div>
-            </div>
-        </div>
-        <button class="slider-arrow prev" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-arrow next" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
-        <div class="slider-dots" id="sliderDots">
-            <span class="active" data-index="0"></span>
-            <span data-index="1"></span>
-            <span data-index="2"></span>
-        </div>
-    </section>
-
-    <!-- ===== STATISTIK ===== -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item"><span class="number" data-target="45">0</span><span class="label">Program Kegiatan</span></div>
-                <div class="stat-item"><span class="number" data-target="120">0</span><span class="label">Mitra Kerja</span></div>
-                <div class="stat-item"><span class="number" data-target="78">0</span><span class="label">Desa Binaan</span></div>
-                <div class="stat-item"><span class="number" data-target="234">0</span><span class="label">Pelatihan SDM</span></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== TENTANG KESBANGPOL (TABS) ===== -->
-    <section id="tentang">
-        <div class="container">
-            <div class="section-header">
-                <h2>Tentang Kesbangpol</h2>
-                <div class="line"></div>
-            </div>
-            <div class="tab-container">
-                <div class="tab-nav" id="tabNavTentang">
-                    <button class="active" data-tab="tentang-visi">Visi & Misi</button>
-                    <button data-tab="tentang-tugas">Tugas & Fungsi</button>
-                    <button data-tab="tentang-struktur">Struktur</button>
-                    <button data-tab="tentang-renstra">Renstra & IKU</button>
-                </div>
-                <div class="tab-pane active" id="tentang-visi">
-                    <h3>Visi</h3>
-                    <p>"Terwujudnya kehidupan berbangsa dan bernegara yang harmonis, demokratis, dan berkeadilan melalui penguatan nilai-nilai kebangsaan dan partisipasi politik masyarakat."</p>
-                    <h3 style="margin-top:20px;">Misi</h3>
-                    <ul style="list-style:disc;padding-left:20px;color:#3d4f4f;">
-                        <li>Memperkuat wawasan kebangsaan dan bela negara</li>
-                        <li>Meningkatkan kualitas demokrasi melalui pendidikan politik</li>
-                        <li>Menjaga stabilitas dan kerukunan antarumat beragama</li>
-                        <li>Membangun sinergi dengan pemerintah dan masyarakat sipil</li>
-                        <li>Memberikan pelayanan publik yang cepat, tepat, dan transparan</li>
-                    </ul>
-                </div>
-                <div class="tab-pane" id="tentang-tugas">
-                    <h3>Tugas Pokok</h3>
-                    <p>Melaksanakan urusan pemerintahan di bidang kesatuan bangsa dan politik sesuai dengan peraturan perundang-undangan.</p>
-                    <h3>Fungsi</h3>
-                    <ul style="list-style:disc;padding-left:20px;color:#3d4f4f;">
-                        <li>Perumusan kebijakan di bidang kesbangpol</li>
-                        <li>Koordinasi dan fasilitasi pembinaan ideologi dan wawasan kebangsaan</li>
-                        <li>Pemantauan dan evaluasi pelaksanaan politik dan demokrasi</li>
-                        <li>Pengelolaan data dan informasi kesbangpol</li>
-                    </ul>
-                </div>
-                <div class="tab-pane" id="tentang-struktur">
-                    <h3>Struktur Organisasi</h3>
-                    <ul style="list-style:none;padding:0;">
-                        <li><strong>Kepala Dinas</strong> - Dr. Ir. H. Ahmad Fauzi, M.Si</li>
-                        <li><strong>Sekretaris</strong> - Dra. Siti Rahma, M.A.P</li>
-                        <li><strong>Bidang Kewaspadaan Nasional</strong> - Drs. Agus Widodo, M.Si</li>
-                        <li><strong>Bidang Bina Ideologi dan Wawasan Kebangsaan</strong> - Hj. Nurhayati, S.Pd., M.Pd</li>
-                        <li><strong>Bidang Fasilitasi Pembinaan Politik</strong> - Dr. M. Ridwan, SH., MH</li>
-                        <li><strong>Bidang Ketahanan Sosial Ekonomi</strong> - Ir. Bambang, M.Si</li>
-                        <li><strong>Kelompok Jabatan Fungsional</strong></li>
-                    </ul>
-                </div>
-                <div class="tab-pane" id="tentang-renstra">
-                    <h3>Renstra 2026-2030</h3>
-                    <p>Rencana Strategis Kesbangpol Muba berfokus pada peningkatan indeks kerukunan, partisipasi politik, dan tata kelola pemerintahan yang baik.</p>
-                    <h3>Indikator Kinerja Utama (IKU)</h3>
-                    <ul style="list-style:disc;padding-left:20px;">
-                        <li>Persentase desa/kelurahan dengan indeks kerukunan tinggi</li>
-                        <li>Partisipasi pemilih dalam pemilu dan pilkada</li>
-                        <li>Jumlah ormas yang terdaftar dan aktif</li>
-                        <li>Survei kepuasan masyarakat terhadap layanan Kesbangpol</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== PROFIL PEGAWAI ===== -->
-    <section id="profil-pegawai" style="background:var(--smokey-green-bg);">
-        <div class="container">
-            <div class="section-header">
-                <h2>Profil Pegawai</h2>
-                <div class="line"></div>
-            </div>
-            <div class="card">
-                <ul class="pegawai-list">
-                    <li><span>Kepala Dinas</span><span class="jabatan">Dr. Ir. H. Ahmad Fauzi, M.Si</span></li>
-                    <li><span>Sekretaris</span><span class="jabatan">Dra. Siti Rahma, M.A.P</span></li>
-                    <li><span>Kabid Kewaspadaan Nasional</span><span class="jabatan">Drs. Agus Widodo, M.Si</span></li>
-                    <li><span>Kabid Bina Ideologi dan Wawasan Kebangsaan</span><span class="jabatan">Hj. Nurhayati, S.Pd., M.Pd</span></li>
-                    <li><span>Kabid Fasilitasi Pembinaan Politik</span><span class="jabatan">Dr. M. Ridwan, SH., MH</span></li>
-                    <li><span>Kabid Ketahanan Sosial Ekonomi</span><span class="jabatan">Ir. Bambang, M.Si</span></li>
-                    <li><span>Jumlah Pegawai</span><span class="jabatan">45 PNS + 10 Non-PNS</span></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== PPID ===== -->
-    <section id="ppid">
-        <div class="container">
-            <div class="section-header">
-                <h2>PPID</h2>
-                <div class="line"></div>
-            </div>
-            <div class="tab-container">
-                <div class="tab-nav" id="tabNavPpid">
-                    <button class="active" data-tab="ppid-berkala">Informasi Berkala</button>
-                    <button data-tab="ppid-serta">Serta Merta</button>
-                    <button data-tab="ppid-tersedia">Tersedia Setiap Saat</button>
-                    <button data-tab="ppid-dikecualikan">Dikecualikan</button>
-                    <button data-tab="ppid-sop">SOP & Form</button>
-                </div>
-                <div class="tab-pane active" id="ppid-berkala">
-                    <p>Informasi yang diunggah secara rutin setiap periode tertentu.</p>
-                    <ul style="list-style:disc;padding-left:20px;color:#3d4f4f;">
-                        <li>Laporan Kinerja Tahunan</li>
-                        <li>Peraturan Kepala Dinas</li>
-                        <li>Rencana Kerja dan Anggaran</li>
-                        <li>Data Statistik Kesbangpol</li>
-                    </ul>
-                </div>
-                <div class="tab-pane" id="ppid-serta">
-                    <p>Informasi yang wajib diumumkan segera karena sifatnya mendesak atau penting.</p>
-                    <ul style="list-style:disc;padding-left:20px;color:#3d4f4f;">
-                        <li>Pengumuman hasil rapat koordinasi</li>
-                        <li>Pemberitahuan perubahan jadwal layanan</li>
-                        <li>Informasi bencana atau darurat</li>
-                    </ul>
-                </div>
-                <div class="tab-pane" id="ppid-tersedia">
-                    <p>Informasi yang dapat diakses kapan saja oleh masyarakat.</p>
-                    <ul style="list-style:disc;padding-left:20px;color:#3d4f4f;">
-                        <li>Profil Kesbangpol</li>
-                        <li>Struktur Organisasi</li>
-                        <li>Visi, Misi, dan Tugas</li>
-                        <li>Kontak dan alamat</li>
-                    </ul>
-                </div>
-                <div class="tab-pane" id="ppid-dikecualikan">
-                    <p>Informasi yang dikecualikan karena bersifat rahasia atau dilindungi undang-undang.</p>
-                    <ul style="list-style:disc;padding-left:20px;color:#3d4f4f;">
-                        <li>Data pribadi pegawai</li>
-                        <li>Dokumen strategis yang sedang dalam proses</li>
-                        <li>Informasi yang dapat mengganggu keamanan nasional</li>
-                    </ul>
-                </div>
-                <div class="tab-pane" id="ppid-sop">
-                    <h4>Standar Operasional Prosedur (SOP) PPID</h4>
-                    <p>Prosedur permohonan informasi: isi formulir, verifikasi, pemberitahuan biaya (jika ada), dan penyampaian informasi.</p>
-                    <p><strong>Formulir:</strong> Tersedia di kantor atau diunduh dari website.</p>
-                    <p><strong>Jadwal Pelayanan:</strong> Senin-Jumat, 08.00 - 16.00 WIB.</p>
-                    <button class="btn-primary" onclick="openModal('Form Keberatan','Ajukan keberatan informasi publik secara online.')">Ajukan Keberatan</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== LAYANAN PUBLIK ===== -->
-    <section id="layanan" style="background:var(--smokey-green-bg);">
-        <div class="container">
-            <div class="section-header">
-                <h2>Layanan Publik</h2>
-                <div class="line"></div>
-            </div>
-            <div class="grid-2">
-                <div class="card">
-                    <h4><i class="fas fa-users"></i> Pendaftaran Ormas</h4>
-                    <p>Layanan pendaftaran organisasi masyarakat di Kabupaten Muba.</p>
-                    <button class="btn-primary" onclick="openModal('Pendaftaran Ormas','Silakan hubungi Bidang Fasilitasi Politik untuk informasi lebih lanjut.')">Daftar Sekarang</button>
-                </div>
-                <div class="card">
-                    <h4><i class="fas fa-flask"></i> Izin Penelitian</h4>
-                    <p>Perizinan untuk melakukan penelitian di wilayah Muba.</p>
-                    <button class="btn-primary" onclick="openModal('Izin Penelitian','Ajukan permohonan izin penelitian melalui layanan online atau datang ke kantor.')">Ajukan Izin</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SAKIP ===== -->
-    <section id="sakip">
-        <div class="container">
-            <div class="section-header">
-                <h2>SAKIP</h2>
-                <div class="line"></div>
-            </div>
-            <div class="dokumen-table-wrap">
-                <table class="dokumen-table">
-                    <thead>
-                        <tr><th>No</th><th>Dokumen</th><th>Tahun</th><th>Aksi</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>1</td><td>Laporan Kinerja</td><td>2025</td><td><button class="btn-download" onclick="openModal('Unduh','Laporan Kinerja 2025.')"><i class="fas fa-download"></i> Unduh</button></td></tr>
-                        <tr><td>2</td><td>Renstra</td><td>2026-2030</td><td><button class="btn-download" onclick="openModal('Unduh','Renstra 2026-2030.')"><i class="fas fa-download"></i> Unduh</button></td></tr>
-                        <tr><td>3</td><td>IKU</td><td>2026</td><td><button class="btn-download" onclick="openModal('Unduh','Indikator Kinerja Utama.')"><i class="fas fa-download"></i> Unduh</button></td></tr>
-                        <tr><td>4</td><td>Renja</td><td>2026</td><td><button class="btn-download" onclick="openModal('Unduh','Rencana Kerja 2026.')"><i class="fas fa-download"></i> Unduh</button></td></tr>
-                        <tr><td>5</td><td>Perjanjian Kinerja</td><td>2026</td><td><button class="btn-download" onclick="openModal('Unduh','Perjanjian Kinerja.')"><i class="fas fa-download"></i> Unduh</button></td></tr>
-                        <tr><td>6</td><td>Pohon Kinerja</td><td>2026</td><td><button class="btn-download" onclick="openModal('Unduh','Pohon Kinerja.')"><i class="fas fa-download"></i> Unduh</button></td></tr>
-                        <tr><td>7</td><td>Cascading</td><td>2026</td><td><button class="btn-download" onclick="openModal('Unduh','Cascading Kinerja.')"><i class="fas fa-download"></i> Unduh</button></td></tr>
-                        <tr><td>8</td><td>Rencana Aksi</td><td>2026</td><td><button class="btn-download" onclick="openModal('Unduh','Rencana Aksi.')"><i class="fas fa-download"></i> Unduh</button></td></tr>
-                        <tr><td>9</td><td>DPA & RKA</td><td>2026</td><td><button class="btn-download" onclick="openModal('Unduh','DPA dan RKA.')"><i class="fas fa-download"></i> Unduh</button></td></tr>
-                        <tr><td>10</td><td>Dokumen Pendukung</td><td>2026</td><td><button class="btn-download" onclick="openModal('Unduh','Dokumen pendukung lainnya.')"><i class="fas fa-download"></i> Unduh</button></td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SDI BANTEN (versi Muba) ===== -->
-    <section id="sdi" style="background:var(--smokey-green-bg);">
-        <div class="container">
-            <div class="section-header">
-                <h2>Satu Data Muba</h2>
-                <div class="line"></div>
-            </div>
-            <div class="grid-3">
-                <div class="card"><h4>Data Demografi</h4><p>Jumlah penduduk, kepadatan, dan komposisi usia.</p><button class="btn-outline" onclick="openModal('Data Demografi','Data penduduk Muba 2025.')">Lihat</button></div>
-                <div class="card"><h4>Data Politik</h4><p>Partisipasi pemilih, jumlah partai, dan ormas.</p><button class="btn-outline" onclick="openModal('Data Politik','Statistik politik Muba.')">Lihat</button></div>
-                <div class="card"><h4>Data Kerukunan</h4><p>Indeks kerukunan antarumat beragama.</p><button class="btn-outline" onclick="openModal('Data Kerukunan','Indeks kerukunan Muba 2025.')">Lihat</button></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== BERITA ===== -->
-    <section id="berita">
-        <div class="container">
-            <div class="section-header">
-                <h2>Berita & Artikel</h2>
-                <div class="line"></div>
-            </div>
-            <div class="grid-3">
-                <div class="card berita-card">
-                    <div class="img-placeholder"><i class="fas fa-newspaper" style="font-size:2.4rem;opacity:0.3;"></i></div>
-                    <div class="body">
-                        <span class="tag">Berita</span>
-                        <h4>Rakor Pemilu Damai 2026</h4>
-                        <p>Kesbangpol menggelar rakor dengan KPU dan Bawaslu.</p>
-                        <a href="#" onclick="openModal('Rakor Pemilu Damai','Rakor berlangsung pada 10 Juli 2026.')">Baca selengkapnya →</a>
+                        <a data-page="galeri"><i class="fas fa-images"></i> Galeri</a>
+                        <a data-page="video"><i class="fas fa-video"></i> Video</a>
                     </div>
                 </div>
-                <div class="card berita-card">
-                    <div class="img-placeholder"><i class="fas fa-users" style="font-size:2.4rem;opacity:0.3;"></i></div>
-                    <div class="body">
-                        <span class="tag">Artikel</span>
-                        <h4>Pentingnya Wawasan Kebangsaan</h4>
-                        <p>Artikel tentang penguatan wawasan kebangsaan di era digital.</p>
-                        <a href="#" onclick="openModal('Wawasan Kebangsaan','Artikel lengkap tentang wawasan kebangsaan.')">Baca selengkapnya →</a>
+                <a data-page="dokumen"><i class="fas fa-file-alt"></i> Dokumen</a>
+                <a data-page="saran"><i class="fas fa-comment-dots"></i> Saran</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main>
+        <div class="container">
+
+            <!-- ================================ -->
+            <!-- BERANDA -->
+            <!-- ================================ -->
+            <div id="page-beranda" class="page active">
+
+                <div class="hero-slider" id="heroSlider">
+                    <div class="slide active" style="background: linear-gradient(135deg, #2d2d2d, #6b6b6b);">
+                        <div class="overlay">
+                            <h2><i class="fas fa-handshake"></i> Selamat Datang di Kesbangpol</h2>
+                            <p>Mewujudkan kehidupan berbangsa yang harmonis, demokratis, dan berkeadilan.</p>
+                        </div>
+                    </div>
+                    <div class="slide" style="background: linear-gradient(135deg, #4a4a4a, #8a8a8a);">
+                        <div class="overlay">
+                            <h2><i class="fas fa-star"></i> Pelayanan Prima</h2>
+                            <p>Komitmen pelayanan terbaik bagi masyarakat dalam bidang politik dan kebangsaan.</p>
+                        </div>
+                    </div>
+                    <div class="slide" style="background: linear-gradient(135deg, #2d2d2d, #6b6b6b);">
+                        <div class="overlay">
+                            <h2><i class="fas fa-flag"></i> Sinergi untuk Negeri</h2>
+                            <p>Bersama masyarakat membangun Indonesia yang lebih baik.</p>
+                        </div>
+                    </div>
+                    <button class="slider-btn prev" id="sliderPrev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next" id="sliderNext"><i class="fas fa-chevron-right"></i></button>
+                    <div class="slider-dots" id="sliderDots">
+                        <span class="active" data-slide="0"></span>
+                        <span data-slide="1"></span>
+                        <span data-slide="2"></span>
                     </div>
                 </div>
-                <div class="card berita-card">
-                    <div class="img-placeholder"><i class="fas fa-chart-bar" style="font-size:2.4rem;opacity:0.3;"></i></div>
-                    <div class="body">
-                        <span class="tag">Data Statistik</span>
-                        <h4>Data Ormas/LSM 2025</h4>
-                        <p>Jumlah ormas terdaftar di Muba per 2025.</p>
-                        <a href="#" onclick="openModal('Data Ormas','Total 78 ormas terdaftar.')">Baca selengkapnya →</a>
+
+                <!-- SAMBUTAN -->
+                <div class="sambutan-box">
+                    <div class="sambutan-left">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Kepala Dinas">
+                        <h3>Dr. Ir. H. Ahmad Fauzi, M.Si</h3>
+                        <p>Kepala Dinas Kesbangpol</p>
+                    </div>
+                    <div class="sambutan-right">
+                        <div class="title">Sambutan Kepala Dinas</div>
+                        <div class="sub">Dr. Ir. H. Ahmad Fauzi, M.Si — Kepala Kesbangpol</div>
+                        <p id="sambutanText">
+                            Assalamu'alaikum warahmatullahi wabarakatuh. Puji syukur ke hadirat Allah SWT, atas segala rahmat dan karunia-Nya sehingga kita dapat berkumpul dalam semangat kebersamaan. Sebagai Kepala Dinas Kesatuan Bangsa dan Politik, saya mengajak seluruh elemen masyarakat untuk terus menjaga kerukunan, toleransi, dan semangat kebangsaan. Kami berkomitmen untuk melayani dengan tulus, transparan, dan profesional. Mari kita jadikan perbedaan sebagai kekayaan, dan persatuan sebagai kekuatan. Kami membuka diri terhadap saran dan kritik yang membangun demi perbaikan pelayanan publik. Sekali lagi, selamat datang di portal resmi Kesbangpol. Semoga informasi yang disajikan bermanfaat bagi kita semua.
+                            <span style="display:block; margin-top:8px; font-weight:600;">— Dr. Ir. H. Ahmad Fauzi, M.Si</span>
+                        </p>
+                        <span class="read-more" id="sambutanToggle">Baca selengkapnya <i class="fas fa-chevron-down"></i></span>
+                    </div>
+                </div>
+
+                <!-- STATISTIK -->
+                <div class="statistik-grid" id="statistikGrid">
+                    <div class="stat-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <div class="number">0</div>
+                        <div class="label">Program Kegiatan</div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-handshake"></i>
+                        <div class="number">0</div>
+                        <div class="label">Mitra Kerja</div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-city"></i>
+                        <div class="number">0</div>
+                        <div class="label">Desa Binaan</div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <div class="number">0</div>
+                        <div class="label">Pelatihan SDM</div>
+                    </div>
+                </div>
+
+                <!-- BERITA TERBARU -->
+                <div class="section-title">
+                    <i class="fas fa-newspaper"></i> Berita Terbaru
+                    <small onclick="navigateTo('berita')"><i class="fas fa-arrow-right"></i> Lihat semua</small>
+                </div>
+                <div class="card-grid" id="beritaContainer"></div>
+
+                <!-- AGENDA -->
+                <div class="section-title">
+                    <i class="fas fa-calendar-check"></i> Agenda Terkini
+                    <small onclick="navigateTo('agenda')"><i class="fas fa-arrow-right"></i> Lihat semua</small>
+                </div>
+                <div class="grid-4" id="agendaContainer"></div>
+
+                <!-- GALERI -->
+                <div class="section-title">
+                    <i class="fas fa-images"></i> Galeri Kegiatan
+                    <small onclick="navigateTo('galeri')"><i class="fas fa-arrow-right"></i> Lihat semua</small>
+                </div>
+                <div class="grid-4" id="fotoContainer"></div>
+
+            </div>
+
+            <!-- ================================ -->
+            <!-- PROFIL -->
+            <!-- ================================ -->
+            <div id="page-profil" class="page">
+                <div class="mini-hero">
+                    <h1><i class="fas fa-users"></i> Profil Dinas Kesbangpol</h1>
+                    <p>Mengenal lebih dekat Dinas Kesatuan Bangsa dan Politik Kabupaten Muba</p>
+                </div>
+                <div id="sub-pimpinan" class="content-box">
+                    <h2><i class="fas fa-user-tie"></i> Profil Pimpinan</h2>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:20px; margin-top:12px;">
+                        <div style="text-align:center; background:#f5f5f5; padding:18px; border-radius:var(--radius);">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Kepala Dinas" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:4px solid var(--gold); margin:0 auto 12px;">
+                            <h4 style="font-size:0.95rem;">Dr. Ir. H. Ahmad Fauzi, M.Si</h4>
+                            <p style="color:var(--primary-light); font-size:0.85rem;">Kepala Dinas</p>
+                        </div>
+                        <div style="text-align:center; background:#f5f5f5; padding:18px; border-radius:var(--radius);">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Wakil Kepala" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:4px solid var(--gold); margin:0 auto 12px;">
+                            <h4 style="font-size:0.95rem;">Dra. Siti Rahma, M.A.P</h4>
+                            <p style="color:var(--primary-light); font-size:0.85rem;">Wakil Kepala Dinas</p>
+                        </div>
+                        <div style="text-align:center; background:#f5f5f5; padding:18px; border-radius:var(--radius);">
+                            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Sekretaris" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:4px solid var(--gold); margin:0 auto 12px;">
+                            <h4 style="font-size:0.95rem;">Budi Santoso, S.Sos., M.Si</h4>
+                            <p style="color:var(--primary-light); font-size:0.85rem;">Sekretaris</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="sub-sejarah" class="content-box">
+                    <h2><i class="fas fa-history"></i> Sejarah</h2>
+                    <div style="position:relative; padding-left:30px; border-left:4px solid var(--gold); margin-left:10px;">
+                        <div style="margin-bottom:20px;"><span style="background:var(--primary); color:#fff; padding:4px 14px; border-radius:20px; display:inline-block; margin-bottom:6px; font-weight:600;">2005</span><p>Kesbangpol dibentuk sebagai Badan Kesbangpol untuk merespons dinamika politik dan sosial yang semakin kompleks.</p></div>
+                        <div style="margin-bottom:20px;"><span style="background:var(--primary); color:#fff; padding:4px 14px; border-radius:20px; display:inline-block; margin-bottom:6px; font-weight:600;">2010</span><p>Bertransformasi menjadi Dinas Kesbangpol dengan tugas dan fungsi yang lebih luas.</p></div>
+                        <div style="margin-bottom:20px;"><span style="background:var(--primary); color:#fff; padding:4px 14px; border-radius:20px; display:inline-block; margin-bottom:6px; font-weight:600;">2015 - Sekarang</span><p>Kesbangpol terus berinovasi dan beradaptasi dengan perkembangan zaman, menjadi mitra strategis pemerintah daerah dalam menjaga stabilitas dan kerukunan.</p></div>
+                    </div>
+                </div>
+                <div id="sub-struktur" class="content-box">
+                    <h2><i class="fas fa-sitemap"></i> Struktur Organisasi</h2>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:14px; margin-top:12px;">
+                        <div style="background:var(--secondary); padding:14px; border-radius:var(--radius); text-align:center;"><i class="fas fa-user-tie" style="font-size:1.8rem; color:var(--gold);"></i><h4 style="font-size:0.85rem; margin:4px 0;">Kepala Dinas</h4><p style="font-size:0.8rem;">Dr. Ir. H. Ahmad Fauzi, M.Si</p></div>
+                        <div style="background:var(--secondary); padding:14px; border-radius:var(--radius); text-align:center;"><i class="fas fa-user-tie" style="font-size:1.8rem; color:var(--gold);"></i><h4 style="font-size:0.85rem; margin:4px 0;">Wakil Kepala</h4><p style="font-size:0.8rem;">Dra. Siti Rahma, M.A.P</p></div>
+                        <div style="background:var(--secondary); padding:14px; border-radius:var(--radius); text-align:center;"><i class="fas fa-user-tie" style="font-size:1.8rem; color:var(--gold);"></i><h4 style="font-size:0.85rem; margin:4px 0;">Sekretaris</h4><p style="font-size:0.8rem;">Budi Santoso, S.Sos., M.Si</p></div>
+                        <div style="background:var(--secondary); padding:14px; border-radius:var(--radius); text-align:center;"><i class="fas fa-users" style="font-size:1.8rem; color:var(--gold);"></i><h4 style="font-size:0.85rem; margin:4px 0;">Bidang Politik</h4><p style="font-size:0.8rem;">Drs. Agus Widodo, M.Si</p></div>
+                        <div style="background:var(--secondary); padding:14px; border-radius:var(--radius); text-align:center;"><i class="fas fa-users" style="font-size:1.8rem; color:var(--gold);"></i><h4 style="font-size:0.85rem; margin:4px 0;">Bidang Kewargaan</h4><p style="font-size:0.8rem;">Hj. Nurhayati, S.Pd., M.Pd</p></div>
+                        <div style="background:var(--secondary); padding:14px; border-radius:var(--radius); text-align:center;"><i class="fas fa-users" style="font-size:1.8rem; color:var(--gold);"></i><h4 style="font-size:0.85rem; margin:4px 0;">Bidang Ideologi</h4><p style="font-size:0.8rem;">Dr. M. Ridwan, SH., MH</p></div>
+                    </div>
+                </div>
+                <div id="sub-visi" class="content-box">
+                    <h2><i class="fas fa-bullseye"></i> Visi &amp; Misi</h2>
+                    <h3><i class="fas fa-eye" style="color:var(--gold);"></i> Visi</h3>
+                    <p style="font-size:1.05rem; font-style:italic; background:var(--secondary); padding:14px 18px; border-radius:var(--radius);">"Terwujudnya kehidupan berbangsa dan bernegara yang harmonis, demokratis, dan berkeadilan melalui penguatan nilai-nilai kebangsaan dan partisipasi politik masyarakat."</p>
+                    <h3 style="margin-top:16px;"><i class="fas fa-flag" style="color:var(--gold);"></i> Misi</h3>
+                    <ol><li><i class="fas fa-check-circle" style="color:var(--gold);"></i> Memperkuat wawasan kebangsaan dan bela negara di seluruh lapisan masyarakat.</li><li><i class="fas fa-check-circle" style="color:var(--gold);"></i> Meningkatkan kualitas demokrasi melalui pendidikan politik dan partisipasi aktif.</li><li><i class="fas fa-check-circle" style="color:var(--gold);"></i> Menjaga stabilitas dan kerukunan antarumat beragama dan antargolongan.</li><li><i class="fas fa-check-circle" style="color:var(--gold);"></i> Membangun sinergi dengan lembaga pemerintah dan masyarakat sipil.</li><li><i class="fas fa-check-circle" style="color:var(--gold);"></i> Memberikan pelayanan publik yang cepat, tepat, dan transparan.</li></ol>
+                </div>
+                <div id="sub-tugas" class="content-box">
+                    <h2><i class="fas fa-tasks"></i> Tugas &amp; Fungsi</h2>
+                    <h3>Tugas</h3>
+                    <p>Melaksanakan urusan pemerintahan di bidang kesatuan bangsa dan politik berdasarkan asas otonomi dan tugas pembantuan.</p>
+                    <h3 style="margin-top:14px;">Fungsi</h3>
+                    <ul><li><i class="fas fa-chevron-right" style="color:var(--gold);"></i> Perumusan kebijakan di bidang kesatuan bangsa, politik, dan kewaspadaan.</li><li><i class="fas fa-chevron-right" style="color:var(--gold);"></i> Koordinasi pelaksanaan kebijakan di bidang kesbangpol.</li><li><i class="fas fa-chevron-right" style="color:var(--gold);"></i> Pembinaan dan pengawasan terhadap organisasi kemasyarakatan dan partai politik.</li><li><i class="fas fa-chevron-right" style="color:var(--gold);"></i> Pengendalian dan evaluasi pelaksanaan program kesbangpol.</li><li><i class="fas fa-chevron-right" style="color:var(--gold);"></i> Pelaksanaan fasilitasi dan advokasi di bidang kesbangpol.</li></ul>
+                </div>
+            </div>
+
+            <!-- ================================ -->
+            <!-- BERITA (List) -->
+            <!-- ================================ -->
+            <div id="page-berita" class="page">
+                <div class="mini-hero">
+                    <h1><i class="fas fa-newspaper"></i> Berita</h1>
+                    <p>Informasi terbaru seputar kegiatan dan kebijakan Kesbangpol</p>
+                </div>
+                <div class="card-grid" id="beritaAllContainer"></div>
+            </div>
+
+            <!-- ================================ -->
+            <!-- AGENDA -->
+            <!-- ================================ -->
+            <div id="page-agenda" class="page">
+                <div class="mini-hero">
+                    <h1><i class="fas fa-calendar-alt"></i> Agenda</h1>
+                    <p>Jadwal kegiatan dan agenda pimpinan Kesbangpol</p>
+                </div>
+                <div class="card-grid" id="agendaAllContainer"></div>
+            </div>
+
+            <!-- ================================ -->
+            <!-- GALERI -->
+            <!-- ================================ -->
+            <div id="page-galeri" class="page">
+                <div class="mini-hero">
+                    <h1><i class="fas fa-images"></i> Galeri Foto</h1>
+                    <p>Dokumentasi kegiatan Kesbangpol</p>
+                </div>
+                <div class="grid-4" id="galeriContainer"></div>
+            </div>
+
+            <!-- ================================ -->
+            <!-- VIDEO -->
+            <!-- ================================ -->
+            <div id="page-video" class="page">
+                <div class="mini-hero">
+                    <h1><i class="fas fa-video"></i> Video</h1>
+                    <p>Koleksi video kegiatan dan profil Kesbangpol</p>
+                </div>
+                <div class="grid-4" id="videoContainer"></div>
+            </div>
+
+            <!-- ================================ -->
+            <!-- DOKUMEN -->
+            <!-- ================================ -->
+            <div id="page-dokumen" class="page">
+                <div class="mini-hero">
+                    <h1><i class="fas fa-file-alt"></i> Dokumen</h1>
+                    <p>Kumpulan dokumen resmi dan publikasi Kesbangpol</p>
+                </div>
+                <div class="content-box">
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr><th>No</th><th>Judul Dokumen</th><th>Jenis</th><th>Tahun</th><th>Aksi</th></tr>
+                            </thead>
+                            <tbody id="dokumenTable"></tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <div style="text-align:center;margin-top:28px;">
-                <a href="#" class="btn-primary" onclick="openModal('Semua Berita','Halaman daftar semua berita.')">Lihat semua berita</a>
-            </div>
-        </div>
-    </section>
 
-    <!-- ===== GALERI ===== -->
-    <section id="galeri" style="background:var(--smokey-green-bg);">
-        <div class="container">
-            <div class="section-header">
-                <h2>Galeri Kegiatan</h2>
-                <div class="line"></div>
+            <!-- ================================ -->
+            <!-- SARAN -->
+            <!-- ================================ -->
+            <div id="page-saran" class="page">
+                <div class="mini-hero">
+                    <h1><i class="fas fa-comment-dots"></i> Saran &amp; Kritik</h1>
+                    <p>Kami sangat menghargai masukan Anda untuk perbaikan pelayanan</p>
+                </div>
+                <div class="content-box">
+                    <form id="formSaran">
+                        <div class="form-group">
+                            <label for="saranNama"><i class="fas fa-user"></i> Nama Lengkap</label>
+                            <input type="text" id="saranNama" placeholder="Masukkan nama Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="saranEmail"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="saranEmail" placeholder="Masukkan email Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="saranKategori"><i class="fas fa-tag"></i> Kategori</label>
+                            <select id="saranKategori">
+                                <option value="Saran">Saran</option>
+                                <option value="Kritik">Kritik</option>
+                                <option value="Pertanyaan">Pertanyaan</option>
+                                <option value="Pengaduan">Pengaduan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="saranPesan"><i class="fas fa-comment"></i> Pesan</label>
+                            <textarea id="saranPesan" rows="4" placeholder="Tulis saran, kritik, atau pertanyaan Anda..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> Kirim</button>
+                    </form>
+                    <div id="saranFeedback" style="margin-top:14px; font-weight:600; color:var(--primary);"></div>
+                </div>
             </div>
-            <div class="grid-4">
-                <div class="card" style="text-align:center;padding:30px 10px;" onclick="openModal('Foto 1','Dokumentasi Rakor Pemilu Damai.')">
-                    <i class="fas fa-image" style="font-size:3rem;color:var(--smokey-green);"></i>
-                    <p>Rakor Pemilu</p>
-                </div>
-                <div class="card" style="text-align:center;padding:30px 10px;" onclick="openModal('Foto 2','Sosialisasi Wawasan Kebangsaan di Desa.')">
-                    <i class="fas fa-image" style="font-size:3rem;color:var(--smokey-green);"></i>
-                    <p>Sosialisasi</p>
-                </div>
-                <div class="card" style="text-align:center;padding:30px 10px;" onclick="openModal('Foto 3','Kunjungan Kerja ke Kecamatan.')">
-                    <i class="fas fa-image" style="font-size:3rem;color:var(--smokey-green);"></i>
-                    <p>Kunjungan Kerja</p>
-                </div>
-                <div class="card" style="text-align:center;padding:30px 10px;" onclick="openModal('Foto 4','Pelatihan Fasilitator Desa.')">
-                    <i class="fas fa-image" style="font-size:3rem;color:var(--smokey-green);"></i>
-                    <p>Pelatihan</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ===== HUBUNGI KAMI / KONTAK ===== -->
-    <section id="kontak">
-        <div class="container">
-            <div class="section-header">
-                <h2>Hubungi Kami</h2>
-                <div class="line"></div>
-            </div>
-            <div class="grid-2">
-                <div>
-                    <div class="card">
-                        <h4><i class="fas fa-map-marker-alt"></i> Alamat</h4>
-                        <p>Jl. Kolonel H. Burlian No. 45, Sekayu, Kab. Musi Banyuasin</p>
-                        <h4><i class="fas fa-phone"></i> Telepon</h4>
-                        <p>(0714) 123456</p>
-                        <h4><i class="fas fa-envelope"></i> Email</h4>
-                        <p>kesbangpol@mubakab.go.id</p>
-                        <h4><i class="fas fa-clock"></i> Jam Kerja</h4>
-                        <p>Senin – Jumat, 08.00 – 16.00 WIB</p>
-                    </div>
-                </div>
-                <div>
-                    <div class="card">
-                        <h4>Kirim Pesan</h4>
-                        <form id="formKontak" onsubmit="submitKontak(event)">
-                            <div class="form-group">
-                                <label>Nama</label>
-                                <input type="text" id="namaKontak" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" id="emailKontak" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Pesan</label>
-                                <textarea id="pesanKontak" required></textarea>
-                            </div>
-                            <button type="submit" class="btn-primary" style="width:100%;"><i class="fas fa-paper-plane"></i> Kirim</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
-    </section>
+    </main>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <h4>Kesbangpol Kab. Muba</h4>
-                    <p>Dinas Kesatuan Bangsa dan Politik Kabupaten Musi Banyuasin berkomitmen menjaga kerukunan, toleransi, dan semangat kebangsaan.</p>
-                </div>
-                <div>
-                    <h4>Tautan</h4>
-                    <ul>
-                        <li><a href="#beranda">Beranda</a></li>
-                        <li><a href="#tentang">Tentang</a></li>
-                        <li><a href="#profil-pegawai">Profil Pegawai</a></li>
-                        <li><a href="#ppid">PPID</a></li>
-                        <li><a href="#layanan">Layanan</a></li>
-                        <li><a href="#sakip">SAKIP</a></li>
-                        <li><a href="#sdi">SDI</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Kontak</h4>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Jl. Kol. Burlian, Sekayu</li>
-                        <li><i class="fas fa-phone"></i> (0714) 123456</li>
-                        <li><i class="fas fa-envelope"></i> kesbangpol@mubakab.go.id</li>
-                    </ul>
-                </div>
+            <div>
+                <h4><i class="fas fa-landmark"></i> Kesbangpol</h4>
+                <p>Dinas Kesatuan Bangsa dan Politik<br>Kabupaten Muba</p>
+                <p style="margin-top:6px;">
+                    <i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> Jl. Merdeka No. 123, Kota Muba<br>
+                    <i class="fas fa-phone" style="color:var(--gold);"></i> (0714) 123456<br>
+                    <i class="fas fa-envelope" style="color:var(--gold);"></i> kesbangpol@mubakab.go.id
+                </p>
             </div>
-            <div class="footer-bottom">&copy; 2026 Kesbangpol Kab. Musi Banyuasin. All rights reserved.</div>
+            <div>
+                <h4><i class="fas fa-bars"></i> Menu</h4>
+                <ul>
+                    <li><a onclick="navigateTo('beranda')"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a onclick="navigateTo('profil')"><i class="fas fa-users"></i> Profil</a></li>
+                    <li><a onclick="navigateTo('berita')"><i class="fas fa-newspaper"></i> Berita</a></li>
+                    <li><a onclick="navigateTo('agenda')"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4><i class="fas fa-camera"></i> Dokumentasi</h4>
+                <ul>
+                    <li><a onclick="navigateTo('galeri')"><i class="fas fa-images"></i> Galeri</a></li>
+                    <li><a onclick="navigateTo('video')"><i class="fas fa-video"></i> Video</a></li>
+                    <li><a onclick="navigateTo('dokumen')"><i class="fas fa-file-alt"></i> Dokumen</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4><i class="fas fa-share-alt"></i> Sosial Media</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p style="margin-top:10px;">
+                    <a onclick="navigateTo('saran')"><i class="fas fa-comment-dots"></i> Saran & Kritik</a>
+                </p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Dinas Kesatuan Bangsa dan Politik Kabupaten Muba. All rights reserved.</p>
+                <p style="font-size:0.8rem; opacity:0.6; margin-top:4px;">
+                    Dikembangkan dengan <i class="fas fa-heart" style="color:var(--gold);"></i> untuk pelayanan publik
+                </p>
+            </div>
         </div>
     </footer>
 
-    <!-- ===== MODAL ===== -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-box">
-            <h3 id="modalTitle">Judul</h3>
-            <p id="modalDesc">Deskripsi</p>
-            <button class="btn-primary" onclick="closeModal()">Tutup</button>
-        </div>
-    </div>
-
-    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // ===== SLIDER =====
-        const track = document.getElementById('sliderTrack');
-        const slides = track.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('#sliderDots span');
-        let currentIndex = 0;
-        let autoSlideInterval;
+        // ============================================================
+        // 1. API BASE URL – GANTI DENGAN URL BACKEND ANDA
+        // ============================================================
+        const API_BASE = 'http://localhost/kesbangpol-muba/api.php'; // Ganti jika sudah di hosting
 
-        function goToSlide(index) {
-            if (index < 0) index = slides.length - 1;
-            if (index >= slides.length) index = 0;
-            currentIndex = index;
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
-        }
-        function nextSlide() { goToSlide(currentIndex + 1); }
-        function prevSlide() { goToSlide(currentIndex - 1); }
-        function startAutoSlide() { autoSlideInterval = setInterval(nextSlide, 5000); }
-        function resetAutoSlide() { clearInterval(autoSlideInterval); startAutoSlide(); }
-
-        document.getElementById('prevSlide').addEventListener('click', () => { prevSlide();
-            resetAutoSlide(); });
-        document.getElementById('nextSlide').addEventListener('click', () => { nextSlide();
-            resetAutoSlide(); });
-        dots.forEach(dot => {
-            dot.addEventListener('click', function() {
-                goToSlide(parseInt(this.dataset.index));
-                resetAutoSlide();
-            });
-        });
-        // Touch support
-        let touchStartX = 0,
-            touchEndX = 0;
-        document.querySelector('.hero-slider').addEventListener('touchstart', e => { touchStartX = e.changedTouches[0]
-                .screenX; });
-        document.querySelector('.hero-slider').addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 40) {
-                if (diff > 0) nextSlide();
-                else prevSlide();
-                resetAutoSlide();
-            }
-        });
-        goToSlide(0);
-        startAutoSlide();
-
-        // ===== HAMBURGER =====
-        document.getElementById('hamburger').addEventListener('click', function() {
-            document.getElementById('navLinks').classList.toggle('open');
-        });
-        // Close dropdown on mobile click
-        document.querySelectorAll('.nav-links li').forEach(li => {
-            li.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
-                    this.classList.toggle('open-dropdown');
-                }
-            });
-        });
-
-        // ===== STATISTICS ANIMATION =====
-        const statNumbers = document.querySelectorAll('.stat-item .number');
-        let statsAnimated = false;
-
-        function animateStats() {
-            if (statsAnimated) return;
-            const section = document.querySelector('.stats-section');
-            const rect = section.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 100) {
-                statsAnimated = true;
-                statNumbers.forEach(el => {
-                    const target = parseInt(el.dataset.target);
-                    let current = 0;
-                    const increment = Math.ceil(target / 60);
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= target) { current = target;
-                            clearInterval(timer); }
-                        el.textContent = current;
-                    }, 25);
-                });
-            }
-        }
-        window.addEventListener('scroll', animateStats);
-        window.addEventListener('load', () => setTimeout(animateStats, 500));
-
-        // ===== TABS =====
-        function initTabs(containerId) {
+        // ============================================================
+        // 2. FUNGSI RENDER
+        // ============================================================
+        function renderBerita(containerId, list, limit) {
             const container = document.getElementById(containerId);
             if (!container) return;
-            const buttons = container.querySelectorAll('.tab-nav button');
-            const panes = container.parentElement.querySelectorAll('.tab-pane');
-            buttons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    buttons.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    panes.forEach(p => p.classList.remove('active'));
-                    document.getElementById(this.dataset.tab).classList.add('active');
-                });
-            });
-        }
-        initTabs('tabNavTentang');
-        initTabs('tabNavPpid');
-
-        // ===== MODAL =====
-        function openModal(title, desc) {
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalDesc').textContent = desc;
-            document.getElementById('modalOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
+            const items = limit ? list.slice(0, limit) : list;
+            container.innerHTML = items.map(b => `
+                <div class="card">
+                    <div class="card-img" style="background-image:url('${b.gambar || 'https://picsum.photos/seed/default/800/500'}');"></div>
+                    <div class="card-body">
+                        <span class="badge">${b.kategori || 'Berita'}</span>
+                        <h4>${b.judul}</h4>
+                        <div class="meta"><i class="far fa-calendar-alt"></i> ${b.tanggal || b.created_at || ''}</div>
+                        <p>${(b.konten || '').substring(0, 100)}...</p>
+                        <span class="btn-link" onclick="alert('${(b.konten || 'Tidak ada konten').replace(/'/g, "\\'")}')">Baca selengkapnya <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('active');
-            document.body.style.overflow = '';
+        function renderBeritaAll(list) {
+            const container = document.getElementById('beritaAllContainer');
+            if (!container) return;
+            container.innerHTML = list.map(b => `
+                <div class="card">
+                    <div class="card-img" style="background-image:url('${b.gambar || 'https://picsum.photos/seed/default/800/500'}');"></div>
+                    <div class="card-body">
+                        <span class="badge">${b.kategori || 'Berita'}</span>
+                        <h4>${b.judul}</h4>
+                        <div class="meta"><i class="far fa-calendar-alt"></i> ${b.tanggal || b.created_at || ''}</div>
+                        <p>${(b.konten || '').substring(0, 100)}...</p>
+                        <span class="btn-link" onclick="alert('${(b.konten || 'Tidak ada konten').replace(/'/g, "\\'")}')">Baca selengkapnya <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            `).join('');
         }
-        document.getElementById('modalOverlay').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
+
+        function renderAgenda(containerId, list, limit) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const items = limit ? list.slice(0, limit) : list;
+            container.innerHTML = items.map(a => `
+                <div class="item">
+                    <div class="icon">${a.icon || '📅'}</div>
+                    <h5>${a.judul}</h5>
+                    <div class="date"><i class="far fa-calendar-alt"></i> ${a.tanggal} • ${a.waktu || ''}</div>
+                    <div style="font-size:0.85rem; color:var(--primary-light);"><i class="fas fa-map-marker-alt"></i> ${a.lokasi || a.tempat || ''}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderAgendaAll(list) {
+            const container = document.getElementById('agendaAllContainer');
+            if (!container) return;
+            container.innerHTML = list.map(a => `
+                <div class="card">
+                    <div class="card-body">
+                        <div style="font-size:3rem; text-align:center;">${a.icon || '📅'}</div>
+                        <h4>${a.judul}</h4>
+                        <div class="meta"><i class="far fa-calendar-alt"></i> ${a.tanggal} • ${a.waktu || ''}</div>
+                        <p><i class="fas fa-map-marker-alt"></i> ${a.lokasi || a.tempat || ''}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderFoto(containerId, list, limit) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const items = limit ? list.slice(0, limit) : list;
+            container.innerHTML = items.map(f => `
+                <div class="item">
+                    <div class="thumb" style="background-image:url('${f.gambar || 'https://picsum.photos/seed/default/600/400'}');"></div>
+                    <h5>${f.judul}</h5>
+                </div>
+            `).join('');
+        }
+
+        function renderGaleriAll(list) {
+            const container = document.getElementById('galeriContainer');
+            if (!container) return;
+            container.innerHTML = list.map(f => `
+                <div class="item">
+                    <div class="thumb" style="background-image:url('${f.gambar || 'https://picsum.photos/seed/default/600/400'}');"></div>
+                    <h5>${f.judul}</h5>
+                </div>
+            `).join('');
+        }
+
+        function renderVideo(list) {
+            const container = document.getElementById('videoContainer');
+            if (!container) return;
+            container.innerHTML = list.map(v => `
+                <div class="item" style="padding:0; overflow:hidden;">
+                    <div style="position:relative; padding-bottom:56.25%; height:0; background:#000;">
+                        <iframe src="${v.embed}" style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" allowfullscreen></iframe>
+                    </div>
+                    <div style="padding:12px 16px 16px;">
+                        <h5>${v.judul}</h5>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderDokumen(list) {
+            const tbody = document.getElementById('dokumenTable');
+            if (!tbody) return;
+            tbody.innerHTML = list.map((d, i) => `
+                <tr>
+                    <td>${i + 1}</td>
+                    <td>${d.judul}</td>
+                    <td>${d.jenis || '-'}</td>
+                    <td>${d.tahun || '-'}</td>
+                    <td><a href="#" style="color:var(--primary);font-weight:600;" onclick="alert('Unduh: ${d.judul}'); return false;"><i class="fas fa-download"></i> Unduh</a></td>
+                </tr>
+            `).join('');
+        }
+
+        function updateStatistik(list) {
+            if (!list || list.length < 4) return;
+            const numbers = document.querySelectorAll('.stat-item .number');
+            if (numbers.length >= 4) {
+                numbers[0].textContent = list[0].nilai;
+                numbers[1].textContent = list[1].nilai;
+                numbers[2].textContent = list[2].nilai;
+                numbers[3].textContent = list[3].nilai;
+            }
+        }
+
+        // ============================================================
+        // 3. FUNGSI LOAD DATA DARI API
+        // ============================================================
+        async function loadData() {
+            try {
+                const rBerita = await fetch(`${API_BASE}?route=berita`);
+                const berita = await rBerita.json();
+                renderBerita('beritaContainer', berita, 3);
+                renderBeritaAll(berita);
+
+                const rAgenda = await fetch(`${API_BASE}?route=agenda`);
+                const agenda = await rAgenda.json();
+                renderAgenda('agendaContainer', agenda, 4);
+                renderAgendaAll(agenda);
+
+                const rGaleri = await fetch(`${API_BASE}?route=galeri`);
+                const galeri = await rGaleri.json();
+                renderFoto('fotoContainer', galeri, 4);
+                renderGaleriAll(galeri);
+
+                try {
+                    const rVideo = await fetch(`${API_BASE}?route=video`);
+                    const video = await rVideo.json();
+                    renderVideo(video);
+                } catch(e) { console.warn('Video tidak tersedia'); }
+
+                const rDokumen = await fetch(`${API_BASE}?route=dokumen`);
+                const dokumen = await rDokumen.json();
+                renderDokumen(dokumen);
+
+                const rStat = await fetch(`${API_BASE}?route=statistik`);
+                const statistik = await rStat.json();
+                updateStatistik(statistik);
+
+            } catch (error) {
+                console.error('Gagal load data:', error);
+            }
+        }
+
+        // ============================================================
+        // 4. NAVIGASI & SLIDER
+        // ============================================================
+        function navigateTo(page, sub) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById('page-' + page);
+            if (target) target.classList.add('active');
+
+            document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+            document.querySelectorAll(`.nav-menu a[data-page="${page}"]`).forEach(a => a.classList.add('active'));
+
+            if (page === 'profil' && sub) {
+                setTimeout(() => {
+                    const el = document.getElementById('sub-' + sub);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+
+            document.getElementById('navMenu').classList.remove('open');
+            document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.hero-slider .slide');
+        const dots = document.querySelectorAll('#sliderDots span');
+        function showSlide(index) {
+            slides.forEach((s, i) => s.classList.toggle('active', i === index));
+            dots.forEach((d, i) => d.classList.toggle('active', i === index));
+            slideIndex = index;
+        }
+        document.getElementById('sliderNext')?.addEventListener('click', () => {
+            showSlide((slideIndex + 1) % slides.length);
+        });
+        document.getElementById('sliderPrev')?.addEventListener('click', () => {
+            showSlide((slideIndex - 1 + slides.length) % slides.length);
+        });
+        dots.forEach((d, i) => d.addEventListener('click', () => showSlide(i)));
+        let slideInterval = setInterval(() => {
+            showSlide((slideIndex + 1) % slides.length);
+        }, 5000);
+        document.querySelector('.hero-slider')?.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        document.querySelector('.hero-slider')?.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(() => {
+                showSlide((slideIndex + 1) % slides.length);
+            }, 5000);
         });
 
-        // ===== FORM KONTAK =====
-        function submitKontak(e) {
-            e.preventDefault();
-            const nama = document.getElementById('namaKontak').value.trim();
-            const email = document.getElementById('emailKontak').value.trim();
-            const pesan = document.getElementById('pesanKontak').value.trim();
-            if (!nama || !email || !pesan) {
-                alert('Harap isi semua bidang!');
-                return;
-            }
-            openModal('Pesan Terkirim', `Terima kasih ${nama}, pesan Anda telah kami terima.`);
-            document.getElementById('formKontak').reset();
+        const sambutanText = document.getElementById('sambutanText');
+        const sambutanToggle = document.getElementById('sambutanToggle');
+        if (sambutanToggle && sambutanText) {
+            sambutanToggle.addEventListener('click', () => {
+                const expanded = sambutanText.classList.toggle('expanded');
+                sambutanToggle.innerHTML = expanded ?
+                    'Sembunyikan <i class="fas fa-chevron-up"></i>' :
+                    'Baca selengkapnya <i class="fas fa-chevron-down"></i>';
+            });
         }
 
-        // ===== SMOOTH SCROLL =====
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                const target = document.querySelector(targetId);
-                if (target) {
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navMenu.classList.toggle('open');
+            });
+        }
+        document.querySelectorAll('.dropdown > a[data-page]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
                     e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    this.closest('.dropdown').classList.toggle('open');
                 }
             });
         });
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.navbar')) {
+                navMenu.classList.remove('open');
+            }
+        });
 
-        console.log('🚀 Portal Kesbangpol Muba siap!');
+        document.getElementById('formSaran')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nama = document.getElementById('saranNama').value.trim();
+            const email = document.getElementById('saranEmail').value.trim();
+            const pesan = document.getElementById('saranPesan').value.trim();
+            if (!nama || !email || !pesan) {
+                document.getElementById('saranFeedback').textContent = '⚠️ Semua field harus diisi!';
+                document.getElementById('saranFeedback').style.color = '#c0392b';
+                return;
+            }
+            document.getElementById('saranFeedback').textContent = '✅ Terima kasih! Saran/kritik Anda telah kami terima.';
+            document.getElementById('saranFeedback').style.color = 'var(--primary)';
+            this.reset();
+            setTimeout(() => {
+                document.getElementById('saranFeedback').textContent = '';
+            }, 5000);
+        });
+
+        // ============================================================
+        // 5. INIT – Panggil loadData()
+        // ============================================================
+        loadData();
+
+        document.querySelectorAll('.nav-menu a[data-page]').forEach(a => {
+            a.addEventListener('click', function(e) {
+                const page = this.dataset.page;
+                const sub = this.dataset.sub || null;
+                if (window.innerWidth <= 768 && this.closest('.dropdown')) {
+                    return;
+                }
+                navigateTo(page, sub);
+            });
+        });
+
+        console.log('✅ Website Kesbangpol Muba siap!');
     </script>
+
 </body>
 </html>
