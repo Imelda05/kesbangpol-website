@@ -1927,62 +1927,65 @@
     ============================================================ -->
     <script>
         // ============================================================
-        // TOGGLE MENU HAMBURGER - PASTI BERFUNGSI
+        // MENU HAMBURGER - PASTI BERFUNGSI DI HP
         // ============================================================
-        // Panggil fungsi ini dari tombol atau event listener
-        function toggleMenu() {
-            var menu = document.getElementById('navMenu');
-            var icon = document.getElementById('hamburgerIcon');
-            if (menu.classList.contains('open')) {
-                menu.classList.remove('open');
-                icon.className = 'fas fa-bars';
-            } else {
-                menu.classList.add('open');
-                icon.className = 'fas fa-times';
-            }
-        }
-
-        // Event listener untuk tombol hamburger
         document.addEventListener('DOMContentLoaded', function() {
             var hamburger = document.getElementById('hamburger');
-            if (hamburger) {
-                hamburger.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    toggleMenu();
-                });
-            }
+            var navMenu = document.getElementById('navMenu');
+            var icon = document.getElementById('hamburgerIcon');
+
+            // Toggle menu saat tombol diklik
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (navMenu.classList.contains('open')) {
+                    navMenu.classList.remove('open');
+                    icon.className = 'fas fa-bars';
+                } else {
+                    navMenu.classList.add('open');
+                    icon.className = 'fas fa-times';
+                }
+            });
 
             // Tutup menu saat klik di luar navbar
             document.addEventListener('click', function(e) {
-                var menu = document.getElementById('navMenu');
-                var icon = document.getElementById('hamburgerIcon');
-                if (!e.target.closest('.navbar') && menu.classList.contains('open')) {
-                    menu.classList.remove('open');
+                if (!e.target.closest('.navbar') && navMenu.classList.contains('open')) {
+                    navMenu.classList.remove('open');
                     icon.className = 'fas fa-bars';
                 }
             });
 
-            // Tutup menu saat link di klik (mobile)
-            var navLinks = document.querySelectorAll('#navMenu a');
-            navLinks.forEach(function(link) {
+            // Tutup menu dan dropdown saat link di klik (mobile)
+            var allLinks = navMenu.querySelectorAll('a');
+            allLinks.forEach(function(link) {
                 link.addEventListener('click', function() {
                     if (window.innerWidth <= 768) {
-                        var menu = document.getElementById('navMenu');
-                        var icon = document.getElementById('hamburgerIcon');
-                        menu.classList.remove('open');
+                        navMenu.classList.remove('open');
                         icon.className = 'fas fa-bars';
+                        // Tutup semua dropdown yang terbuka
+                        var openDropdowns = navMenu.querySelectorAll('li.open-dropdown');
+                        openDropdowns.forEach(function(li) {
+                            li.classList.remove('open-dropdown');
+                        });
                     }
                 });
             });
 
-            // Dropdown mobile: klik pada parent dengan dropdown
-            var menuItems = document.querySelectorAll('#navMenu > li');
+            // Dropdown toggle di mobile
+            var menuItems = navMenu.querySelectorAll('li');
             menuItems.forEach(function(li) {
-                var link = li.querySelector('a');
-                if (li.querySelector('.dropdown-content')) {
+                var dropdownContent = li.querySelector('.dropdown-content');
+                if (dropdownContent) {
+                    var link = li.querySelector('a');
                     link.addEventListener('click', function(e) {
                         if (window.innerWidth <= 768) {
                             e.preventDefault();
+                            // Tutup dropdown lain yang terbuka
+                            var otherOpen = navMenu.querySelectorAll('li.open-dropdown');
+                            otherOpen.forEach(function(other) {
+                                if (other !== li) {
+                                    other.classList.remove('open-dropdown');
+                                }
+                            });
                             li.classList.toggle('open-dropdown');
                         }
                     });
@@ -1991,7 +1994,7 @@
         });
 
         // ============================================================
-        // DATA
+        // DATA (STATIS)
         // ============================================================
         var data = {
             berita: [
@@ -2041,7 +2044,7 @@
         };
 
         // ============================================================
-        // RENDER
+        // RENDER FUNGSI
         // ============================================================
         function renderBerita(containerId, list, limit) {
             var container = document.getElementById(containerId);
@@ -2138,12 +2141,12 @@
             }
 
             // Tutup menu mobile
-            var menu = document.getElementById('navMenu');
+            var navMenu = document.getElementById('navMenu');
             var icon = document.getElementById('hamburgerIcon');
-            menu.classList.remove('open');
+            navMenu.classList.remove('open');
             icon.className = 'fas fa-bars';
-            document.querySelectorAll('.nav-menu > li.open-dropdown').forEach(function(d) { d.classList.remove(
-                    'open-dropdown'); });
+            var openDropdowns = navMenu.querySelectorAll('li.open-dropdown');
+            openDropdowns.forEach(function(li) { li.classList.remove('open-dropdown'); });
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -2241,7 +2244,8 @@
         renderGaleri();
 
         console.log('✅ Website Kesbangpol Muba siap digunakan!');
-        console.log('📱 Menu hamburger sudah diperbaiki dan PASTI BERFUNGSI!');
+        console.log('📱 Menu hamburger di HP PASTI BERFUNGSI!');
     </script>
+
 </body>
 </html>
