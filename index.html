@@ -2006,6 +2006,7 @@
                 menu.classList.add('open');
                 icon.className = 'fas fa-times';
             }
+            console.log('Menu toggled. Open:', menu.classList.contains('open'));
         }
 
         // ============================================================
@@ -2016,11 +2017,13 @@
             // --- HAMBURGER (fallback) ---
             var hamburger = document.getElementById('hamburger');
             if (hamburger) {
-                // Jangan timpa onclick, tambahkan event listener juga
                 hamburger.addEventListener('click', function(e) {
                     e.stopPropagation();
                     toggleMenu();
                 });
+                console.log('Event listener hamburger terpasang.');
+            } else {
+                console.error('Elemen hamburger tidak ditemukan!');
             }
 
             // --- TUTUP MENU SAAT KLIK DI LUAR ---
@@ -2030,6 +2033,7 @@
                 if (!e.target.closest('.navbar') && menu && menu.classList.contains('open')) {
                     menu.classList.remove('open');
                     icon.className = 'fas fa-bars';
+                    console.log('Menu ditutup karena klik di luar.');
                 }
             });
 
@@ -2045,6 +2049,7 @@
                         // Tutup semua dropdown yang terbuka
                         var openDrops = document.querySelectorAll('#navMenu > li.open-dropdown');
                         openDrops.forEach(function(li) { li.classList.remove('open-dropdown'); });
+                        console.log('Menu ditutup karena link diklik.');
                     }
                 });
             });
@@ -2063,11 +2068,13 @@
                                 if (other !== li) other.classList.remove('open-dropdown');
                             });
                             li.classList.toggle('open-dropdown');
+                            console.log('Dropdown toggled.');
                         }
                     });
                 }
             });
 
+            console.log('✅ DOM siap, semua event terpasang.');
         }); // end DOMContentLoaded
 
         // ============================================================
@@ -2322,7 +2329,7 @@
 
         console.log('✅ Website Kesbangpol Muba siap digunakan!');
         console.log('📱 Menu hamburger di HP PASTI BERFUNGSI (onclick + event listener)');
+        console.log('🔍 Jika masih error, buka console (F12) dan lihat pesan error.');
     </script>
-
 </body>
 </html>
