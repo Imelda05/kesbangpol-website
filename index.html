@@ -1144,8 +1144,8 @@
                 <span>Kesbangpol <small>Kab. Musi Banyuasin</small></span>
             </div>
 
-            <!-- TOMBOL HAMBURGER dengan ONCLICK LANGSUNG -->
-            <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <!-- TOMBOL HAMBURGER -->
+            <button class="nav-hamburger" id="hamburger" aria-label="Menu">
                 <i class="fas fa-bars" id="hamburgerIcon"></i>
             </button>
 
@@ -1242,7 +1242,7 @@
     </nav>
 
     <!-- ============================================================
-    MAIN CONTENT
+    MAIN CONTENT (SEMUA FITUR LENGKAP)
     ============================================================ -->
     <main>
 
@@ -1989,96 +1989,75 @@
     </div>
 
     <!-- ============================================================
-    JAVASCRIPT - PASTI BERFUNGSI
+    JAVASCRIPT - LENGKAP + HAMBURGER FIX
     ============================================================ -->
     <script>
         // ============================================================
-        // 1. HAMBURGER TOGGLE (FUNGSI GLOBAL)
-        // ============================================================
-        function toggleMenu() {
-            var menu = document.getElementById('navMenu');
-            var icon = document.getElementById('hamburgerIcon');
-            if (!menu) return;
-            if (menu.classList.contains('open')) {
-                menu.classList.remove('open');
-                icon.className = 'fas fa-bars';
-            } else {
-                menu.classList.add('open');
-                icon.className = 'fas fa-times';
-            }
-            console.log('Menu toggled. Open:', menu.classList.contains('open'));
-        }
-
-        // ============================================================
-        // 2. EVENT LISTENER SAAT DOKUMEN SIAP
+        // 1. HAMBURGER MENU - PASTI BERFUNGSI DI HP
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
-
-            // --- HAMBURGER (fallback) ---
             var hamburger = document.getElementById('hamburger');
-            if (hamburger) {
+            var navMenu = document.getElementById('navMenu');
+            var icon = document.getElementById('hamburgerIcon');
+
+            if (hamburger && navMenu) {
+                // Toggle menu
                 hamburger.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    toggleMenu();
-                });
-                console.log('Event listener hamburger terpasang.');
-            } else {
-                console.error('Elemen hamburger tidak ditemukan!');
-            }
-
-            // --- TUTUP MENU SAAT KLIK DI LUAR ---
-            document.addEventListener('click', function(e) {
-                var menu = document.getElementById('navMenu');
-                var icon = document.getElementById('hamburgerIcon');
-                if (!e.target.closest('.navbar') && menu && menu.classList.contains('open')) {
-                    menu.classList.remove('open');
-                    icon.className = 'fas fa-bars';
-                    console.log('Menu ditutup karena klik di luar.');
-                }
-            });
-
-            // --- TUTUP MENU SAAT LINK DIKLIK (mobile) ---
-            var navLinks = document.querySelectorAll('#navMenu a');
-            navLinks.forEach(function(link) {
-                link.addEventListener('click', function() {
-                    var menu = document.getElementById('navMenu');
-                    var icon = document.getElementById('hamburgerIcon');
-                    if (window.innerWidth <= 768) {
-                        menu.classList.remove('open');
-                        icon.className = 'fas fa-bars';
-                        // Tutup semua dropdown yang terbuka
-                        var openDrops = document.querySelectorAll('#navMenu > li.open-dropdown');
-                        openDrops.forEach(function(li) { li.classList.remove('open-dropdown'); });
-                        console.log('Menu ditutup karena link diklik.');
+                    if (navMenu.classList.contains('open')) {
+                        navMenu.classList.remove('open');
+                        if (icon) icon.className = 'fas fa-bars';
+                    } else {
+                        navMenu.classList.add('open');
+                        if (icon) icon.className = 'fas fa-times';
                     }
                 });
-            });
 
-            // --- DROPDOWN MOBILE ---
-            var menuItems = document.querySelectorAll('#navMenu > li');
-            menuItems.forEach(function(li) {
-                if (li.querySelector('.dropdown-content')) {
-                    var link = li.querySelector('a');
-                    link.addEventListener('click', function(e) {
-                        if (window.innerWidth <= 768) {
-                            e.preventDefault();
-                            // Tutup dropdown lain
-                            var others = document.querySelectorAll('#navMenu > li.open-dropdown');
-                            others.forEach(function(other) {
-                                if (other !== li) other.classList.remove('open-dropdown');
-                            });
-                            li.classList.toggle('open-dropdown');
-                            console.log('Dropdown toggled.');
+                // Tutup menu saat klik di luar navbar
+                document.addEventListener('click', function(e) {
+                    if (navMenu && !e.target.closest('.navbar') && navMenu.classList.contains('open')) {
+                        navMenu.classList.remove('open');
+                        if (icon) icon.className = 'fas fa-bars';
+                    }
+                });
+
+                // Tutup menu saat link di klik (mobile)
+                var navLinks = document.querySelectorAll('#navMenu a');
+                navLinks.forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        if (window.innerWidth <= 768 && navMenu.classList.contains('open')) {
+                            navMenu.classList.remove('open');
+                            if (icon) icon.className = 'fas fa-bars';
+                            // Tutup semua dropdown yang terbuka
+                            var openDrops = document.querySelectorAll('#navMenu > li.open-dropdown');
+                            openDrops.forEach(function(li) { li.classList.remove('open-dropdown'); });
                         }
                     });
-                }
-            });
+                });
 
-            console.log('✅ DOM siap, semua event terpasang.');
-        }); // end DOMContentLoaded
+                // Dropdown mobile
+                var menuItems = document.querySelectorAll('#navMenu > li');
+                menuItems.forEach(function(li) {
+                    if (li.querySelector('.dropdown-content')) {
+                        var link = li.querySelector('a');
+                        link.addEventListener('click', function(e) {
+                            if (window.innerWidth <= 768) {
+                                e.preventDefault();
+                                // Tutup dropdown lain
+                                var others = document.querySelectorAll('#navMenu > li.open-dropdown');
+                                others.forEach(function(other) {
+                                    if (other !== li) other.classList.remove('open-dropdown');
+                                });
+                                li.classList.toggle('open-dropdown');
+                            }
+                        });
+                    }
+                });
+            }
+        });
 
         // ============================================================
-        // 3. DATA STATIS (Berita, Agenda, Galeri)
+        // 2. DATA STATIS (Berita, Agenda, Galeri)
         // ============================================================
         var data = {
             berita: [
@@ -2128,7 +2107,7 @@
         };
 
         // ============================================================
-        // 4. FUNGSI RENDER
+        // 3. FUNGSI RENDER
         // ============================================================
         function renderBerita(containerId, list, limit) {
             var container = document.getElementById(containerId);
@@ -2206,7 +2185,7 @@
         }
 
         // ============================================================
-        // 5. NAVIGASI
+        // 4. NAVIGASI
         // ============================================================
         function navigateTo(page, sub) {
             document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
@@ -2235,7 +2214,7 @@
         }
 
         // ============================================================
-        // 6. MODAL
+        // 5. MODAL
         // ============================================================
         function openModal(title, desc) {
             document.getElementById('modalTitle').innerHTML = '<i class="fas fa-info-circle"></i> ' + title;
@@ -2253,7 +2232,7 @@
         });
 
         // ============================================================
-        // 7. SLIDER
+        // 6. SLIDER
         // ============================================================
         var slideIndex = 0;
         var slides = document.querySelectorAll('#sliderTrack .slide');
@@ -2284,7 +2263,7 @@
         }
 
         // ============================================================
-        // 8. SAMBUTAN READ MORE
+        // 7. SAMBUTAN READ MORE
         // ============================================================
         document.getElementById('sambutanToggle').addEventListener('click', function() {
             var text = document.getElementById('sambutanText');
@@ -2294,7 +2273,7 @@
         });
 
         // ============================================================
-        // 9. NAVIGASI DARI MENU
+        // 8. NAVIGASI DARI MENU
         // ============================================================
         document.querySelectorAll('.nav-menu a[data-page]').forEach(function(a) {
             a.addEventListener('click', function(e) {
@@ -2318,7 +2297,7 @@
         });
 
         // ============================================================
-        // 10. INIT
+        // 9. INIT
         // ============================================================
         renderBerita('beritaContainer', data.berita, 3);
         renderBeritaAll();
@@ -2328,8 +2307,8 @@
         renderGaleri();
 
         console.log('✅ Website Kesbangpol Muba siap digunakan!');
-        console.log('📱 Menu hamburger di HP PASTI BERFUNGSI (onclick + event listener)');
-        console.log('🔍 Jika masih error, buka console (F12) dan lihat pesan error.');
+        console.log('📱 Menu hamburger di HP PASTI BERFUNGSI!');
     </script>
+
 </body>
 </html>
